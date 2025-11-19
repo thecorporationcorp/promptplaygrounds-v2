@@ -380,9 +380,11 @@
         </div>
       </div>
       <a
-        href="javascript:(function(){const%20text=Array.from(document.querySelectorAll('[data-message-author-role],%20.group\\/conversation-turn')).map(el=>el.innerText).join('\\n\\n');if(text){const%20cheatUrl='DOMAIN/cheat-codez.html?capture='+encodeURIComponent(text.slice(0,3000));window.open(cheatUrl,'_blank')}else{alert('No%20conversation%20found.%20Make%20sure%20you\\'re%20on%20ChatGPT%20or%20Claude.')}})()"
+        id="cheatCodezBookmarklet"
+        href="javascript:(function(){const%20text=Array.from(document.querySelectorAll('[data-message-author-role],.group\\/conversation-turn,.message-content')).map(el=>el.innerText.trim()).filter(t=>t).join('\\n\\n');if(text){const%20domain=window.location.hostname.includes('localhost')?'http://localhost:8000':'https://promptplaygroundz.com';const%20cheatUrl=domain+'/cheat-codez.html?capture='+encodeURIComponent(text.slice(0,3000));window.open(cheatUrl,'_blank')}else{alert('No%20conversation%20found.\\n\\nMake%20sure%20you\\'re%20on:\\n- ChatGPT (chat.openai.com)\\n- Claude (claude.ai)\\n- Gemini (gemini.google.com)\\n\\nThen%20click%20the%20bookmark%20again.')}})()"
         class="bookmarklet-button-cheat"
-        onclick="event.preventDefault(); alert('To install:\\n1. Drag this button to your bookmarks bar\\n2. Go to ChatGPT or Claude\\n3. Click the bookmark to capture your chat\\n4. It auto-opens Cheat Codez with your conversation!');"
+        draggable="true"
+        title="Drag to bookmarks bar, then click on ChatGPT/Claude to capture conversations"
       >
         📎 Capture Chat → Cheat Codez
       </a>
@@ -637,6 +639,89 @@ Be specific! The more detail you provide, the better your Cheat Code."
         document.getElementById('userInput').scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 500);
     }
+
+    // Update bookmarklet with correct domain
+    window.addEventListener('DOMContentLoaded', function() {
+      const bookmarklet = document.getElementById('cheatCodezBookmarklet');
+      if (bookmarklet) {
+        // Get current domain
+        const currentDomain = window.location.origin;
+
+        // Update bookmarklet href with current domain
+        const bookmarkletCode = `javascript:(function(){const%20text=Array.from(document.querySelectorAll('[data-message-author-role],.group\\/conversation-turn,.message-content')).map(el=>el.innerText.trim()).filter(t=>t).join('\\n\\n');if(text){const%20cheatUrl='${currentDomain}/cheat-codez.html?capture='+encodeURIComponent(text.slice(0,3000));window.open(cheatUrl,'_blank')}else{alert('No%20conversation%20found.\\n\\nMake%20sure%20you\\'re%20on:\\n- ChatGPT (chat.openai.com)\\n- Claude (claude.ai)\\n- Gemini (gemini.google.com)\\n\\nThen%20click%20the%20bookmark%20again.')}})()`;
+
+        bookmarklet.href = bookmarkletCode;
+
+        // Add click handler for when user clicks it ON the Cheat Codez page
+        bookmarklet.addEventListener('click', function(e) {
+          // If we're on the Cheat Codez page, show instructions instead of executing
+          if (window.location.pathname.includes('cheat-codez')) {
+            e.preventDefault();
+
+            // Check if instructions are already showing
+            if (document.getElementById('bookmarklet-instructions')) {
+              return;
+            }
+
+            // Create instruction modal
+            const modal = document.createElement('div');
+            modal.id = 'bookmarklet-instructions';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;';
+
+            modal.innerHTML = `
+              <div style="background: #1a1a1a; border: 2px solid #00ff41; border-radius: 8px; padding: 2rem; max-width: 600px; color: white;">
+                <h2 style="color: #00ff41; margin-bottom: 1rem;">📎 How to Use the Chat Capture Bookmarklet</h2>
+
+                <div style="background: #000; border: 1px solid #00ff41; padding: 1.5rem; margin: 1rem 0; border-radius: 4px;">
+                  <h3 style="color: #ffff00; margin-bottom: 1rem;">Step 1: Install the Bookmarklet</h3>
+                  <p style="color: #00ff41; line-height: 1.6;">
+                    <strong>Option A:</strong> Drag the yellow button to your bookmarks bar<br>
+                    <strong>Option B:</strong> Right-click → "Bookmark this link" → Save to bookmarks bar
+                  </p>
+                </div>
+
+                <div style="background: #000; border: 1px solid #00ff41; padding: 1.5rem; margin: 1rem 0; border-radius: 4px;">
+                  <h3 style="color: #ffff00; margin-bottom: 1rem;">Step 2: Have a Conversation</h3>
+                  <p style="color: #00ff41; line-height: 1.6;">
+                    Go to one of these sites and have a conversation:<br>
+                    • <strong>ChatGPT:</strong> chat.openai.com<br>
+                    • <strong>Claude:</strong> claude.ai<br>
+                    • <strong>Gemini:</strong> gemini.google.com
+                  </p>
+                </div>
+
+                <div style="background: #000; border: 1px solid #00ff41; padding: 1.5rem; margin: 1rem 0; border-radius: 4px;">
+                  <h3 style="color: #ffff00; margin-bottom: 1rem;">Step 3: Capture It!</h3>
+                  <p style="color: #00ff41; line-height: 1.6;">
+                    Click the bookmark in your bookmarks bar.<br>
+                    <strong>Magic happens:</strong> Your conversation opens here in Cheat Codez, ready to be optimized!
+                  </p>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 255, 0, 0.1); border: 1px solid #ffff00; border-radius: 4px;">
+                  <strong style="color: #ffff00;">💡 Pro Tip:</strong>
+                  <span style="color: #00ff41;">The bookmarklet captures up to 3000 characters of your conversation. Perfect for turning messy chats into clean, reusable prompts!</span>
+                </div>
+
+                <button onclick="this.parentElement.parentElement.remove()" style="width: 100%; margin-top: 1.5rem; padding: 1rem; background: #00ff41; color: #000; border: none; border-radius: 4px; font-weight: bold; font-size: 1rem; cursor: pointer;">
+                  ✅ Got It!
+                </button>
+              </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Close on background click
+            modal.addEventListener('click', function(e) {
+              if (e.target === modal) {
+                modal.remove();
+              }
+            });
+          }
+          // Otherwise, let it execute normally (we're on ChatGPT/Claude)
+        });
+      }
+    });
 
     // Simple matrix rain effect (lightweight)
     function createMatrixRain() {
