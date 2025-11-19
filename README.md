@@ -1,4 +1,4 @@
-# Prompt Playground - Bookmarklet Marketplace
+# PROMPT PLAYGROUNDZ - Bookmarklet Marketplace
 
 A marketplace for AI prompts delivered as one-click bookmarklets.
 

@@ -239,7 +239,7 @@ if (require.main === module) {
     httpMethod: 'POST',
     body: JSON.stringify({
       to: process.env.EMAIL_TO || 'thecorporationcorp@thecorporationcorp.com',
-      subject: 'Test Email from Prompt Playgroundz',
+      subject: 'Test Email from PROMPT PLAYGROUNDZ',
       htmlBody: '<h1>Test Email</h1><p>This is a test email from the email integration system.</p>',
       textBody: 'Test Email\n\nThis is a test email from the email integration system.'
     })

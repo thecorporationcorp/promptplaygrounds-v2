@@ -238,7 +238,7 @@
             btn.style.display = 'inline-block';
             btn.addEventListener('click', () => {
               navigator.share({
-                title: 'Prompt Playgrounds',
+                title: 'PROMPT PLAYGROUNDZs',
                 text: 'Check out these AI prompt bookmarklets!',
                 url: window.location.href
               }).catch(err => console.log('Share cancelled'));

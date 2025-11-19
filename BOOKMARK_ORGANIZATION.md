@@ -40,7 +40,7 @@
 ```html
 <!DOCTYPE NETSCAPE-Bookmark-file-1>
 <DL><p>
-    <DT><H3>AI Prompts - Prompt Playgrounds</H3>
+    <DT><H3>AI Prompts - PROMPT PLAYGROUNDZs</H3>
     <DL><p>
         <DT><H3>Writing</H3>
         <DL><p>
@@ -107,7 +107,7 @@
 ```javascript
 // Generate bookmark file
 BookmarkSetup.generateBookmarkFile(prompts, {
-  folderName: 'AI Prompts - Prompt Playgrounds',
+  folderName: 'AI Prompts - PROMPT PLAYGROUNDZs',
   organizeByCategory: true,
   addTimestamps: true
 });
@@ -159,7 +159,7 @@ checkBrowserSupport() {
 ### Auto-Generated Organization
 
 ```
-📁 AI Prompts - Prompt Playgrounds
+📁 AI Prompts - PROMPT PLAYGROUNDZs
   ├─ 📁 Writing
   │   ├─ 📌 Email Wizard Pro
   │   ├─ 📌 Blog Post Writer
@@ -236,7 +236,7 @@ BookmarkSetup.generateBookmarkFile(prompts, {
 
 ### What You Do
 
-**Prompt Playgrounds:** One-click organized import
+**PROMPT PLAYGROUNDZs:** One-click organized import
 - ✅ Universal (all browsers)
 - ✅ Instant setup (~2 min)
 - ✅ Auto-organized folders

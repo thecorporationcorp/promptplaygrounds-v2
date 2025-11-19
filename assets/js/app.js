@@ -17,7 +17,7 @@ const PromptPlayground = {
     try {
       await this.loadPrompts();
       this.initEventListeners();
-      console.log('✓ Prompt Playground initialized');
+      console.log('✓ PROMPT PLAYGROUNDZ initialized');
     } catch (error) {
       console.error('Failed to initialize:', error);
     }

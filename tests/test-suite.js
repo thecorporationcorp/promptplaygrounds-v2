@@ -1,7 +1,7 @@
 /**
  * AUTOMATED TEST SUITE
  *
- * Comprehensive tests for Prompt Playgroundz
+ * Comprehensive tests for PROMPT PLAYGROUNDZ
  * Run with: node tests/test-suite.js
  */
 

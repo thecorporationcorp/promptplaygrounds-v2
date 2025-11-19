@@ -1,6 +1,6 @@
 # EMAIL INTEGRATION SETUP GUIDE
 
-Complete guide to setting up production email notifications for Prompt Playgroundz.
+Complete guide to setting up production email notifications for PROMPT PLAYGROUNDZ.
 
 ## Overview
 
@@ -62,7 +62,7 @@ The email system sends:
 
 1. Go to https://app.sendgrid.com/settings/api_keys
 2. Click "Create API Key"
-3. Name: "Prompt Playgroundz Production"
+3. Name: "PROMPT PLAYGROUNDZ Production"
 4. Permissions: "Full Access" (or "Mail Send" minimum)
 5. Click "Create & View"
 6. **COPY THE API KEY** (you won't see it again!)
@@ -74,7 +74,7 @@ The email system sends:
 3. Fill in your details:
    - From Email: noreply@promptplaygroundz.com (or your domain)
    - Reply To: thecorporationcorp@thecorporationcorp.com
-   - Name: Prompt Playgroundz
+   - Name: PROMPT PLAYGROUNDZ
 4. Verify email address
 
 ### Step 4: Install Dependencies

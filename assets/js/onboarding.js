@@ -115,7 +115,7 @@ const Onboarding = {
   showWelcomeTour() {
     this.createTour({
       id: 'welcomeTour',
-      title: '👋 Welcome to Prompt Playgrounds!',
+      title: '👋 Welcome to PROMPT PLAYGROUNDZs!',
       content: `
         <div style="text-align: center;">
           <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
@@ -513,7 +513,7 @@ const Onboarding = {
           <div style="font-size: 5rem; margin-bottom: 1rem;">🎊</div>
           <h1 style="margin: 0 0 0.5rem; font-size: 2.5rem;">Congratulations!</h1>
           <p style="margin-bottom: 2rem; font-size: 1.125rem; line-height: 1.6;">
-            You're now a <strong>Prompt Playgrounds Pro</strong>!<br>
+            You're now a <strong>PROMPT PLAYGROUNDZs Pro</strong>!<br>
             Your AI prompts are ready to use.
           </p>
 

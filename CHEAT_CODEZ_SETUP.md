@@ -2,9 +2,9 @@
 
 ## What is Cheat Codez?
 
-Cheat Codez is your AI-powered prompt generator that transforms rough ideas into professional, optimized prompts. It's the third pillar of Prompt Playgroundz:
+Cheat Codez is your AI-powered prompt generator that transforms rough ideas into professional, optimized prompts. It's the third pillar of PROMPT PLAYGROUNDZ:
 
-1. **Prompt Playgroundz Library** - Browse & use existing prompts ($0.99)
+1. **PROMPT PLAYGROUNDZ Library** - Browse & use existing prompts ($0.99)
 2. **Cheat Codez** - AI-generated custom prompts ($1.99) **← YOU ARE HERE**
 3. **Project Filez** - Premium classified prompts ($10-$99)
 

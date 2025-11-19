@@ -43,7 +43,7 @@ I'll create automated configuration scripts:
 #!/bin/bash
 # config-setup.sh - Automated configuration wizard
 
-echo "🚀 Prompt Playgroundz Configuration Setup"
+echo "🚀 PROMPT PLAYGROUNDZ Configuration Setup"
 echo "=========================================="
 
 # 1. Ko-fi Setup

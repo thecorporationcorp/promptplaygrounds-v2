@@ -215,7 +215,7 @@ const WebhookHandler = {
   async sendWelcomeEmail(purchaseRecord) {
     const emailData = {
       to: purchaseRecord.email,
-      subject: '🎉 Welcome to Prompt Playgrounds - Your Access Code',
+      subject: '🎉 Welcome to PROMPT PLAYGROUNDZs - Your Access Code',
       html: this.generateWelcomeEmail(purchaseRecord)
     };
 
@@ -276,14 +276,14 @@ const WebhookHandler = {
 <body>
   <div class="container">
     <div class="header">
-      <h1 style="margin: 0; font-size: 32px;">🎉 Welcome to Prompt Playgrounds!</h1>
+      <h1 style="margin: 0; font-size: 32px;">🎉 Welcome to PROMPT PLAYGROUNDZs!</h1>
       <p style="margin: 10px 0 0; opacity: 0.9;">Your AI prompt library is ready</p>
     </div>
 
     <div class="content">
       <p>Hi ${safeName}! 👋</p>
 
-      <p>Thank you for joining Prompt Playgrounds! Your purchase has been confirmed and you now have instant access to our entire library of professional AI prompts.</p>
+      <p>Thank you for joining PROMPT PLAYGROUNDZs! Your purchase has been confirmed and you now have instant access to our entire library of professional AI prompts.</p>
 
       <div class="access-code">
         <p style="margin: 0 0 10px; font-size: 14px; color: #6b7280;">YOUR ACCESS CODE</p>
@@ -314,7 +314,7 @@ const WebhookHandler = {
 
       <p><strong>Need help?</strong> Reply to this email or check our <a href="${window.location.origin}/how-it-works.html">how-it-works guide</a>.</p>
 
-      <p style="margin-top: 30px;">Happy prompting! 🚀<br><strong>The Prompt Playgrounds Team</strong></p>
+      <p style="margin-top: 30px;">Happy prompting! 🚀<br><strong>The PROMPT PLAYGROUNDZs Team</strong></p>
     </div>
 
     <div class="footer">

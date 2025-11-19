@@ -125,7 +125,7 @@ module.exports = async (req, res) => {
 async sendWelcomeEmail(purchaseRecord) {
   const emailData = {
     to: purchaseRecord.email,
-    subject: '🎉 Welcome to Prompt Playgrounds',
+    subject: '🎉 Welcome to PROMPT PLAYGROUNDZs',
     html: this.generateWelcomeEmail(purchaseRecord)
   };
 

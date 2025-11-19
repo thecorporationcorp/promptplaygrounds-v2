@@ -81,7 +81,7 @@ const EmailIntegration = {
     const email = {
       id: this.generateEmailId(),
       to: emailData.to || 'thecorporationcorp@thecorporationcorp.com',
-      subject: emailData.subject || 'Notification from Prompt Playgroundz',
+      subject: emailData.subject || 'Notification from PROMPT PLAYGROUNDZ',
       htmlBody: emailData.htmlBody || emailData.body || '',
       textBody: emailData.textBody || '',
       timestamp: new Date().toISOString(),
@@ -330,20 +330,20 @@ const EmailIntegration = {
     console.log('📧 Sending test email...');
 
     const testEmailId = this.queueEmail({
-      subject: '✅ Test Email from Prompt Playgroundz',
+      subject: '✅ Test Email from PROMPT PLAYGROUNDZ',
       htmlBody: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h1 style="color: #00ff41;">✅ Email Integration Test</h1>
-          <p>This is a test email from the Prompt Playgroundz email integration system.</p>
+          <p>This is a test email from the PROMPT PLAYGROUNDZ email integration system.</p>
           <p><strong>Timestamp:</strong> ${new Date().toISOString()}</p>
           <p><strong>Status:</strong> Email integration is working correctly!</p>
           <hr style="border: 1px solid #00ff41; margin: 20px 0;">
           <p style="color: #666; font-size: 12px;">
-            This email was sent automatically by the Prompt Playgroundz monitoring system.
+            This email was sent automatically by the PROMPT PLAYGROUNDZ monitoring system.
           </p>
         </div>
       `,
-      textBody: `Email Integration Test\n\nThis is a test email from the Prompt Playgroundz email integration system.\n\nTimestamp: ${new Date().toISOString()}\nStatus: Email integration is working correctly!`,
+      textBody: `Email Integration Test\n\nThis is a test email from the PROMPT PLAYGROUNDZ email integration system.\n\nTimestamp: ${new Date().toISOString()}\nStatus: Email integration is working correctly!`,
       type: 'test'
     });
 

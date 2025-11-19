@@ -608,7 +608,7 @@ const SystemMonitor = {
 
         <hr>
         <p style="color: #666; font-size: 0.9em;">
-          This is an automated alert from Prompt Playgroundz System Monitor.<br>
+          This is an automated alert from PROMPT PLAYGROUNDZ System Monitor.<br>
           Generated: ${new Date().toISOString()}
         </p>
       </body>
@@ -667,7 +667,7 @@ const SystemMonitor = {
 
     const email = {
       to: this.config.alertEmail,
-      subject: `📊 Daily Report: Prompt Playgroundz - ${report.date}`,
+      subject: `📊 Daily Report: PROMPT PLAYGROUNDZ - ${report.date}`,
       body: this.formatDailyReportEmail(report),
       timestamp: new Date().toISOString(),
       type: 'daily_report'
@@ -714,7 +714,7 @@ const SystemMonitor = {
           <div class="header">
             <h1>📊 Daily System Report</h1>
             <p>${report.date}</p>
-            <p style="opacity: 0.9;">Prompt Playgroundz</p>
+            <p style="opacity: 0.9;">PROMPT PLAYGROUNDZ</p>
           </div>
 
           <div class="section">
@@ -815,7 +815,7 @@ const SystemMonitor = {
 
           <div class="footer">
             <p>Generated: ${new Date(report.generatedAt).toLocaleString()}</p>
-            <p>Prompt Playgroundz System Monitor v1.0</p>
+            <p>PROMPT PLAYGROUNDZ System Monitor v1.0</p>
           </div>
         </div>
       </body>

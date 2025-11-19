@@ -12,7 +12,7 @@ const BookmarkSetup = {
    */
   generateBookmarkFile(prompts, options = {}) {
     const {
-      folderName = 'AI Prompts - Prompt Playgrounds',
+      folderName = 'AI Prompts - PROMPT PLAYGROUNDZs',
       organizeByCa
 
 tegory = true,
@@ -151,7 +151,7 @@ tegory = true,
         bookmark_bar: {
           children: [{
             type: 'folder',
-            name: 'AI Prompts - Prompt Playgrounds',
+            name: 'AI Prompts - PROMPT PLAYGROUNDZs',
             date_added: timestamp.toString(),
             date_modified: timestamp.toString(),
             children: children

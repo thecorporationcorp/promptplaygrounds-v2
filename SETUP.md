@@ -2,7 +2,7 @@
 
 ## 🚀 QUICK START
 
-This guide will help you deploy Prompt Playgrounds from scratch.
+This guide will help you deploy PROMPT PLAYGROUNDZs from scratch.
 
 ## 📋 PREREQUISITES
 
@@ -171,7 +171,7 @@ Upload to any web host via FTP:
 
 1. Create Ko-fi account: https://ko-fi.com
 2. Set up "Support" or "Shop" feature
-3. Create a product: "Prompt Playground Access - 99¢"
+3. Create a product: "PROMPT PLAYGROUNDZ Access - 99¢"
 4. Get your Ko-fi link
 5. Update in `index.html`
 
