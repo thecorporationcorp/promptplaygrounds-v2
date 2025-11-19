@@ -381,7 +381,7 @@
       </div>
       <a
         id="cheatCodezBookmarklet"
-        href="javascript:(function(){const%20text=Array.from(document.querySelectorAll('[data-message-author-role],.group\\/conversation-turn,.message-content')).map(el=>el.innerText.trim()).filter(t=>t).join('\\n\\n');if(text){const%20domain=window.location.hostname.includes('localhost')?'http://localhost:8000':'https://promptplaygroundz.com';const%20cheatUrl=domain+'/cheat-codez.html?capture='+encodeURIComponent(text.slice(0,3000));window.open(cheatUrl,'_blank')}else{alert('No%20conversation%20found.\\n\\nMake%20sure%20you\\'re%20on:\\n- ChatGPT (chat.openai.com)\\n- Claude (claude.ai)\\n- Gemini (gemini.google.com)\\n\\nThen%20click%20the%20bookmark%20again.')}})()"
+        href="javascript:(function(){const%20msgs=Array.from(document.querySelectorAll('[data-message-author-role],.group\\/conversation-turn,.message-content,.markdown')).map(e=>e.innerText.trim()).filter(t=>t&&t.length>10);if(msgs.length===0){alert('❌%20No%20conversation%20found!\\n\\nMake%20sure%20you\\'re%20on:\\n•%20ChatGPT%20(chat.openai.com)\\n•%20Claude%20(claude.ai)\\n•%20Gemini%20(gemini.google.com)\\n\\nThen%20try%20again.');return;}const%20convo=msgs.join('\\n\\n');const%20preview=convo.slice(0,3000);const%20formatted='📎%20CHAT%20CAPTURED%20BY%20PROMPT%20PLAYGROUNDZ\\n'+'═'.repeat(50)+'\\n\\n'+preview+(convo.length>3000?'\\n\\n[...'+Math.round((convo.length-3000)/1000)+'k%20more%20chars%20captured]':'')+'\\n\\n'+'═'.repeat(50)+'\\n\\n✨%20NEXT%20STEP:\\n1.%20Go%20to%20promptplaygroundz.com/cheat-codez.html\\n2.%20Paste%20this%20into%20the%20text%20box\\n3.%20Choose%20output%20style%20(Optimized/Template/Workflow)\\n4.%20Generate%20your%20Cheat%20Code!\\n\\n💡%20TIP:%20Cheat%20Codez%20turns%20messy%20chats%20into%20clean,%20reusable%20prompts.\\n\\n—%20Captured%20by%20promptplaygroundz';navigator.clipboard.writeText(formatted).then(()=>{alert('✅%20CHAT%20CAPTURED!\\n\\n'+msgs.length+'%20messages%20copied%20to%20clipboard%20('+Math.round(convo.length/1000)+'k%20chars)\\n\\nGo%20to%20Cheat%20Codez%20and%20paste%20it%20in!\\n\\npromptplaygroundz.com/cheat-codez.html');}).catch(()=>{prompt('📋%20Copy%20this%20to%20clipboard%20(Ctrl+C):',formatted);});})()"
         class="bookmarklet-button-cheat"
         draggable="true"
         title="Drag to bookmarks bar, then click on ChatGPT/Claude to capture conversations"
@@ -644,11 +644,11 @@ Be specific! The more detail you provide, the better your Cheat Code."
     window.addEventListener('DOMContentLoaded', function() {
       const bookmarklet = document.getElementById('cheatCodezBookmarklet');
       if (bookmarklet) {
-        // Get current domain
-        const currentDomain = window.location.origin;
+        // Get current domain for instructions
+        const currentDomain = window.location.origin.replace('http://', '').replace('https://', '');
 
-        // Update bookmarklet href with current domain
-        const bookmarkletCode = `javascript:(function(){const%20text=Array.from(document.querySelectorAll('[data-message-author-role],.group\\/conversation-turn,.message-content')).map(el=>el.innerText.trim()).filter(t=>t).join('\\n\\n');if(text){const%20cheatUrl='${currentDomain}/cheat-codez.html?capture='+encodeURIComponent(text.slice(0,3000));window.open(cheatUrl,'_blank')}else{alert('No%20conversation%20found.\\n\\nMake%20sure%20you\\'re%20on:\\n- ChatGPT (chat.openai.com)\\n- Claude (claude.ai)\\n- Gemini (gemini.google.com)\\n\\nThen%20click%20the%20bookmark%20again.')}})()`;
+        // Clipboard-based bookmarklet (better UX than opening new window)
+        const bookmarkletCode = `javascript:(function(){const%20msgs=Array.from(document.querySelectorAll('[data-message-author-role],.group\\/conversation-turn,.message-content,.markdown')).map(e=>e.innerText.trim()).filter(t=>t&&t.length>10);if(msgs.length===0){alert('❌%20No%20conversation%20found!\\n\\nMake%20sure%20you\\'re%20on:\\n•%20ChatGPT%20(chat.openai.com)\\n•%20Claude%20(claude.ai)\\n•%20Gemini%20(gemini.google.com)\\n\\nThen%20try%20again.');return;}const%20convo=msgs.join('\\n\\n');const%20preview=convo.slice(0,3000);const%20formatted='📎%20CHAT%20CAPTURED%20BY%20PROMPT%20PLAYGROUNDZ\\n'+'═'.repeat(50)+'\\n\\n'+preview+(convo.length>3000?'\\n\\n[...'+Math.round((convo.length-3000)/1000)+'k%20more%20chars%20captured]':'')+'\\n\\n'+'═'.repeat(50)+'\\n\\n✨%20NEXT%20STEP:\\n1.%20Go%20to%20${currentDomain}/cheat-codez.html\\n2.%20Paste%20this%20into%20the%20text%20box\\n3.%20Choose%20output%20style%20(Optimized/Template/Workflow)\\n4.%20Generate%20your%20Cheat%20Code!\\n\\n💡%20TIP:%20Cheat%20Codez%20turns%20messy%20chats%20into%20clean,%20reusable%20prompts.\\n\\n—%20Captured%20by%20promptplaygroundz';navigator.clipboard.writeText(formatted).then(()=>{alert('✅%20CHAT%20CAPTURED!\\n\\n'+msgs.length+'%20messages%20copied%20to%20clipboard%20('+Math.round(convo.length/1000)+'k%20chars)\\n\\nGo%20to%20Cheat%20Codez%20and%20paste%20it%20in!\\n\\n${currentDomain}/cheat-codez.html');}).catch(()=>{prompt('📋%20Copy%20this%20to%20clipboard%20(Ctrl+C):',formatted);});})()`;
 
         bookmarklet.href = bookmarkletCode;
 
@@ -694,13 +694,22 @@ Be specific! The more detail you provide, the better your Cheat Code."
                   <h3 style="color: #ffff00; margin-bottom: 1rem;">Step 3: Capture It!</h3>
                   <p style="color: #00ff41; line-height: 1.6;">
                     Click the bookmark in your bookmarks bar.<br>
-                    <strong>Magic happens:</strong> Your conversation opens here in Cheat Codez, ready to be optimized!
+                    <strong>✅ Copies to clipboard automatically!</strong><br>
+                    <span style="font-size: 0.9em; opacity: 0.8;">Includes branding: "Captured by promptplaygroundz"</span>
+                  </p>
+                </div>
+
+                <div style="background: #000; border: 1px solid #00ff41; padding: 1.5rem; margin: 1rem 0; border-radius: 4px;">
+                  <h3 style="color: #ffff00; margin-bottom: 1rem;">Step 4: Paste & Optimize</h3>
+                  <p style="color: #00ff41; line-height: 1.6;">
+                    Come back to Cheat Codez and <strong>paste</strong> (Ctrl+V) into the text box.<br>
+                    Choose your output style and generate your Cheat Code! 🚀
                   </p>
                 </div>
 
                 <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 255, 0, 0.1); border: 1px solid #ffff00; border-radius: 4px;">
                   <strong style="color: #ffff00;">💡 Pro Tip:</strong>
-                  <span style="color: #00ff41;">The bookmarklet captures up to 3000 characters of your conversation. Perfect for turning messy chats into clean, reusable prompts!</span>
+                  <span style="color: #00ff41;">The bookmarklet captures entire conversations and formats them with instructions. If clipboard fails, it shows a prompt to manually copy. Works on ChatGPT, Claude, and Gemini!</span>
                 </div>
 
                 <button onclick="this.parentElement.parentElement.remove()" style="width: 100%; margin-top: 1.5rem; padding: 1rem; background: #00ff41; color: #000; border: none; border-radius: 4px; font-weight: bold; font-size: 1rem; cursor: pointer;">
