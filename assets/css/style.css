@@ -221,6 +221,13 @@ section {
   box-shadow: var(--shadow-md);
 }
 
+/* Ensure navbar buttons have white text */
+.navbar-nav .btn-primary,
+.navbar-nav .btn-primary:visited,
+.navbar-nav .btn-primary:link {
+  color: #ffffff !important;
+}
+
 .btn-secondary {
   background: var(--secondary);
   color: var(--text-inverse);
