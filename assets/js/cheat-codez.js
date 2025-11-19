@@ -158,53 +158,62 @@ const CheatCodez = {
    * which securely calls OpenAI with your API key
    */
   async callAI(userInput, outputStyle) {
-    // Check if API key is configured
-    const apiKey = this.getAPIKey();
-
-    if (!apiKey) {
-      // Fallback to demo mode if no API key
-      console.warn('No API key configured - using demo mode');
-      return this.generateDemoPrompt(userInput, outputStyle);
-    }
-
-    // Construct system prompt based on output style
-    const systemPrompt = this.getSystemPrompt(outputStyle);
+    // Try backend API first (secure), fallback to demo mode
+    const backendEndpoint = this.getBackendEndpoint();
 
     try {
-      // Call OpenAI API
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      // Call secure backend API
+      const response = await fetch(backendEndpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'gpt-4o-mini', // Cost-effective model
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userInput }
-          ],
-          temperature: 0.7,
-          max_tokens: 1000
+          userInput,
+          outputStyle
         })
       });
 
+      // Check for rate limiting
+      if (response.status === 429) {
+        const data = await response.json();
+        const retryAfter = data.retryAfter || 60;
+        throw new Error(`Rate limit exceeded. Please try again in ${retryAfter} seconds.`);
+      }
+
       if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
+        const error = await response.json().catch(() => ({}));
+        throw new Error(error.error || `API error: ${response.status}`);
       }
 
       const data = await response.json();
-      return data.choices[0].message.content;
+
+      if (!data.success || !data.result) {
+        throw new Error('Invalid response from API');
+      }
+
+      return data.result;
 
     } catch (error) {
-      console.error('OpenAI API error:', error);
-      // Fallback to demo
+      console.error('Backend API error:', error);
+      // Fallback to demo mode if backend is not available
+      console.warn('Falling back to demo mode');
       return this.generateDemoPrompt(userInput, outputStyle);
     }
   },
 
   /**
+   * Get backend API endpoint
+   */
+  getBackendEndpoint() {
+    // Auto-detect based on current domain
+    const currentDomain = window.location.origin;
+    return `${currentDomain}/api/cheat-codez`;
+  },
+
+  /**
    * Get API key from localStorage (set by admin)
+   * DEPRECATED: Use backend API instead
    * In production, API calls should go through your backend
    */
   getAPIKey() {

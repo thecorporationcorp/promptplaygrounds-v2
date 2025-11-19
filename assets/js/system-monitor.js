@@ -925,19 +925,29 @@ const SystemMonitor = {
    * Queue email for sending
    */
   queueEmail(email) {
-    const queue = JSON.parse(localStorage.getItem('emailQueue') || '[]');
-    queue.push(email);
+    // Use EmailIntegration if available, otherwise fallback to localStorage
+    if (typeof EmailIntegration !== 'undefined' && EmailIntegration.queueEmail) {
+      EmailIntegration.queueEmail({
+        to: email.to || this.config.alertEmail,
+        subject: email.subject,
+        htmlBody: email.body,
+        textBody: email.body ? email.body.replace(/<[^>]*>/g, '') : '',
+        type: email.type || 'notification'
+      });
+      console.log('📧 Email queued via EmailIntegration:', email.subject);
+    } else {
+      // Fallback: Store in localStorage for manual review
+      const queue = JSON.parse(localStorage.getItem('emailQueue') || '[]');
+      queue.push(email);
 
-    // Keep only last 100 emails
-    if (queue.length > 100) {
-      queue.shift();
+      // Keep only last 100 emails
+      if (queue.length > 100) {
+        queue.shift();
+      }
+
+      localStorage.setItem('emailQueue', JSON.stringify(queue));
+      console.log('📧 Email queued to localStorage (EmailIntegration not available):', email.subject);
     }
-
-    localStorage.setItem('emailQueue', JSON.stringify(queue));
-
-    // In production, this would trigger actual email sending
-    // For now, log to console
-    console.log('📧 Email queued:', email.subject);
   },
 
   /**

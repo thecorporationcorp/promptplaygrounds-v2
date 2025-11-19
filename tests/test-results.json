@@ -1,0 +1,180 @@
+{
+  "timestamp": "2025-11-19T15:08:20.244Z",
+  "summary": {
+    "total": 41,
+    "passed": 37,
+    "failed": 4,
+    "skipped": 0,
+    "passRate": 90
+  },
+  "tests": [
+    {
+      "name": "All HTML pages exist",
+      "status": "passed"
+    },
+    {
+      "name": "All JavaScript files exist",
+      "status": "passed"
+    },
+    {
+      "name": "API functions exist",
+      "status": "passed"
+    },
+    {
+      "name": "Service worker exists",
+      "status": "passed"
+    },
+    {
+      "name": "Configuration files exist",
+      "status": "passed"
+    },
+    {
+      "name": "Security.js has XSS protection",
+      "status": "passed"
+    },
+    {
+      "name": "Security.js has input validation",
+      "status": "passed"
+    },
+    {
+      "name": "Security.js has rate limiting",
+      "status": "passed"
+    },
+    {
+      "name": "Security.js has safe localStorage handling",
+      "status": "passed"
+    },
+    {
+      "name": "Cheat Codez API has rate limiting",
+      "status": "passed"
+    },
+    {
+      "name": "Cheat Codez API validates input",
+      "status": "passed"
+    },
+    {
+      "name": "Email API validates recipient",
+      "status": "passed"
+    },
+    {
+      "name": "Auth.js exists and has access code validation",
+      "status": "failed",
+      "error": "Missing validateCode function"
+    },
+    {
+      "name": "Auth.js has check access function",
+      "status": "failed",
+      "error": "Missing checkAccess function"
+    },
+    {
+      "name": "Auth.js has grant access function",
+      "status": "passed"
+    },
+    {
+      "name": "System monitor has health check",
+      "status": "passed"
+    },
+    {
+      "name": "System monitor has error tracking",
+      "status": "failed",
+      "error": "Missing error tracking"
+    },
+    {
+      "name": "System monitor has email alerts",
+      "status": "passed"
+    },
+    {
+      "name": "System monitor has daily reports",
+      "status": "passed"
+    },
+    {
+      "name": "Email integration exists",
+      "status": "passed"
+    },
+    {
+      "name": "Email integration has queue system",
+      "status": "passed"
+    },
+    {
+      "name": "Email integration has retry logic",
+      "status": "passed"
+    },
+    {
+      "name": "Email API supports SendGrid",
+      "status": "passed"
+    },
+    {
+      "name": "Email API supports AWS SES",
+      "status": "passed"
+    },
+    {
+      "name": "Accessibility script exists",
+      "status": "passed"
+    },
+    {
+      "name": "Accessibility has skip links",
+      "status": "passed"
+    },
+    {
+      "name": "Accessibility has ARIA labels",
+      "status": "passed"
+    },
+    {
+      "name": "Accessibility has live regions",
+      "status": "passed"
+    },
+    {
+      "name": "Accessibility has keyboard navigation",
+      "status": "passed"
+    },
+    {
+      "name": "Service worker is configured",
+      "status": "passed"
+    },
+    {
+      "name": "Service worker registration exists",
+      "status": "passed"
+    },
+    {
+      "name": "Cheat Codez page exists",
+      "status": "passed"
+    },
+    {
+      "name": "Cheat Codez script exists",
+      "status": "passed"
+    },
+    {
+      "name": "Cheat Codez has credit system",
+      "status": "failed",
+      "error": "Missing credit check"
+    },
+    {
+      "name": "Cheat Codez uses backend API",
+      "status": "passed"
+    },
+    {
+      "name": "Cheat Codez API has system prompts",
+      "status": "passed"
+    },
+    {
+      "name": "Config setup script is executable",
+      "status": "passed"
+    },
+    {
+      "name": "Config validator is executable",
+      "status": "passed"
+    },
+    {
+      "name": "Config setup script has all steps",
+      "status": "passed"
+    },
+    {
+      "name": "All HTML files have required scripts",
+      "status": "passed"
+    },
+    {
+      "name": "All HTML files have proper doctype",
+      "status": "passed"
+    }
+  ]
+}
