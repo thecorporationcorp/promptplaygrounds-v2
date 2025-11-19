@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Admin Control Panel - Prompt Playgrounds</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#6366F1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+
+  <style>
+    :root {
+      --admin-primary: #8b5cf6;
+      --admin-danger: #ef4444;
+      --admin-success: #10b981;
+      --admin-warning: #f59e0b;
+      --admin-info: #3b82f6;
+    }
+
+    body {
+      background: var(--bg-secondary);
+    }
+
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+    }
+
+    .admin-sidebar {
+      background: var(--bg-main);
+      border-right: 1px solid var(--border-color);
+      padding: 2rem 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .admin-brand {
+      padding: 0 1.5rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+    }
+
+    .admin-brand h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+      color: var(--admin-primary);
+    }
+
+    .admin-brand p {
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+    }
+
+    .admin-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .admin-nav li {
+      margin: 0;
+    }
+
+    .admin-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all var(--transition-base);
+      border-left: 3px solid transparent;
+    }
+
+    .admin-nav a:hover,
+    .admin-nav a.active {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border-left-color: var(--admin-primary);
+    }
+
+    .admin-nav .icon {
+      font-size: 1.25rem;
+      width: 1.5rem;
+      text-align: center;
+    }
+
+    .admin-main {
+      padding: 2rem;
+      max-width: 1400px;
+    }
+
+    .admin-header {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .admin-header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card-admin {
+      background: var(--bg-main);
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+    }
+
+    .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      opacity: 0.7;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .stat-change {
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    .stat-change.positive {
+      color: var(--admin-success);
+    }
+
+    .stat-change.negative {
+      color: var(--admin-danger);
+    }
+
+    .dashboard-section {
+      background: var(--bg-main);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .table-admin {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table-admin th {
+      text-align: left;
+      padding: 0.75rem;
+      background: var(--bg-secondary);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .table-admin td {
+      padding: 1rem 0.75rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .table-admin tr:hover {
+      background: var(--bg-secondary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-pending {
+      background: var(--admin-warning);
+      color: white;
+    }
+
+    .badge-approved {
+      background: var(--admin-success);
+      color: white;
+    }
+
+    .badge-rejected {
+      background: var(--admin-danger);
+      color: white;
+    }
+
+    .badge-active {
+      background: var(--admin-info);
+      color: white;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-icon {
+      padding: 0.5rem;
+      min-width: auto;
+      font-size: 1rem;
+    }
+
+    .code-display {
+      background: var(--bg-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-inline {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+
+    .chart-placeholder {
+      height: 300px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+    }
+
+    .activity-item {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      gap: 1rem;
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .activity-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .activity-icon.success {
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .activity-icon.warning {
+      background: rgba(245, 158, 11, 0.1);
+    }
+
+    .activity-icon.info {
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .activity-content {
+      flex-grow: 1;
+    }
+
+    .activity-time {
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .login-card {
+      background: var(--bg-main);
+      padding: 3rem;
+      border-radius: var(--radius-lg);
+      max-width: 400px;
+      width: 100%;
+      box-shadow: var(--shadow-2xl);
+    }
+
+    .login-card h1 {
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .login-card p {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .admin-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-sidebar {
+        position: relative;
+        height: auto;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <h1>🔐 Admin Access</h1>
+      <p>Enter your master password to access the control panel</p>
+
+      <form id="loginForm" onsubmit="AdminPanel.login(event)">
+        <div class="form-group">
+          <label for="adminPassword">Master Password</label>
+          <input
+            type="password"
+            id="adminPassword"
+            class="form-input"
+            placeholder="Enter your admin password"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          🔓 Unlock Admin Panel
+        </button>
+      </form>
+
+      <div class="alert alert-warning mt-lg" style="font-size: 0.875rem; background: rgba(251, 191, 36, 0.1); border-color: #f59e0b;">
+        <strong>⚠️ Security Notice:</strong><br>
+        <small>Check <code>assets/js/admin.js</code> for password. Change it immediately before deploying.<br>
+        For production, implement server-side authentication (see INTEGRITY_REPORT.md)</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="adminPanel" class="admin-layout hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <h2>⚙️ Admin Panel</h2>
+        <p>Prompt Playgrounds</p>
+      </div>
+
+      <ul class="admin-nav">
+        <li>
+          <a href="#" class="active" onclick="AdminPanel.showSection('dashboard')">
+            <span class="icon">📊</span>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="AdminPanel.showSection('access-codes')">
+            <span class="icon">🔑</span>
+            Access Codes
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="AdminPanel.showSection('prompts')">
+            <span class="icon">📝</span>
+            Prompt Library
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="AdminPanel.showSection('moderation')">
+            <span class="icon">✅</span>
+            Moderation Queue
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="AdminPanel.showSection('developers')">
+            <span class="icon">👥</span>
+            Developers
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="AdminPanel.showSection('revenue')">
+            <span class="icon">💰</span>
+            Revenue
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="AdminPanel.showSection('users')">
+            <span class="icon">👤</span>
+            Users
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="AdminPanel.showSection('analytics')">
+            <span class="icon">📈</span>
+            Analytics
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="AdminPanel.showSection('settings')">
+            <span class="icon">⚙️</span>
+            Settings
+          </a>
+        </li>
+        <li style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+          <a href="index.html">
+            <span class="icon">🌐</span>
+            View Site
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="AdminPanel.logout()">
+            <span class="icon">🚪</span>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- DASHBOARD SECTION -->
+      <div id="section-dashboard" class="admin-section">
+        <div class="admin-header">
+          <h1>📊 Dashboard Overview</h1>
+          <div class="quick-actions">
+            <button class="btn btn-primary" onclick="AdminPanel.generateAccessCode()">
+              + Generate Access Code
+            </button>
+            <button class="btn btn-outline" onclick="AdminPanel.refreshData()">
+              🔄 Refresh
+            </button>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-grid">
+          <div class="stat-card-admin">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value" id="totalRevenue">$0</div>
+                <div class="stat-label">Total Revenue</div>
+                <div class="stat-change positive">↑ $127 this week</div>
+              </div>
+              <div class="stat-icon">💰</div>
+            </div>
+          </div>
+
+          <div class="stat-card-admin">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value" id="totalUsers">0</div>
+                <div class="stat-label">Active Users</div>
+                <div class="stat-change positive">↑ 23 this week</div>
+              </div>
+              <div class="stat-icon">👥</div>
+            </div>
+          </div>
+
+          <div class="stat-card-admin">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value" id="totalPrompts">20</div>
+                <div class="stat-label">Total Prompts</div>
+                <div class="stat-change positive">↑ 3 pending</div>
+              </div>
+              <div class="stat-icon">📝</div>
+            </div>
+          </div>
+
+          <div class="stat-card-admin">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value" id="totalDevelopers">1</div>
+                <div class="stat-label">Developers</div>
+                <div class="stat-change positive">↑ 2 pending</div>
+              </div>
+              <div class="stat-icon">👨‍💻</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT ACTIVITY -->
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>Recent Activity</h2>
+            <a href="#" class="btn btn-sm btn-outline">View All</a>
+          </div>
+
+          <div id="activityFeed">
+            <div class="activity-item">
+              <div class="activity-icon success">✓</div>
+              <div class="activity-content">
+                <strong>New user registered</strong>
+                <div class="activity-time">2 minutes ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon warning">📝</div>
+              <div class="activity-content">
+                <strong>Prompt submitted for review</strong>
+                <div class="activity-time">15 minutes ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon info">💰</div>
+              <div class="activity-content">
+                <strong>New purchase: Email Wizard Pro</strong>
+                <div class="activity-time">1 hour ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PENDING ACTIONS -->
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>⚠️ Pending Actions</h2>
+            <span class="badge badge-warning">3 items</span>
+          </div>
+
+          <table class="table-admin">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Type</th>
+                <th>Submitted</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Advanced SEO Assistant</strong></td>
+                <td><span class="badge badge-pending">Prompt</span></td>
+                <td>2 hours ago</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn btn-sm btn-primary">Review</button>
+                    <button class="btn btn-sm btn-outline">Reject</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>John Developer</strong></td>
+                <td><span class="badge badge-pending">Developer</span></td>
+                <td>1 day ago</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn btn-sm btn-primary">Approve</button>
+                    <button class="btn btn-sm btn-outline">Reject</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ACCESS CODES SECTION -->
+      <div id="section-access-codes" class="admin-section hidden">
+        <div class="admin-header">
+          <h1>🔑 Access Code Management</h1>
+          <button class="btn btn-primary" onclick="AdminPanel.generateAccessCode()">
+            + Generate New Code
+          </button>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>Active Access Codes</h2>
+            <p style="margin: 0; color: var(--text-secondary); font-size: 0.875rem;">
+              Manage Ko-fi redemption codes for library access
+            </p>
+          </div>
+
+          <div class="form-inline mb-lg">
+            <div class="form-group" style="flex-grow: 1;">
+              <label for="newCode">Generate Custom Code</label>
+              <input
+                type="text"
+                id="newCode"
+                class="form-input"
+                placeholder="SUMMER2024 or leave blank for random"
+              />
+            </div>
+            <button class="btn btn-primary" onclick="AdminPanel.createCode()">
+              Generate
+            </button>
+          </div>
+
+          <div id="codesList">
+            <div class="code-display">
+              <code>PROMPT2024</code>
+              <div>
+                <span class="badge badge-active">Active</span>
+                <button class="btn btn-sm btn-outline" onclick="AdminPanel.copyCode('PROMPT2024')">Copy</button>
+                <button class="btn btn-sm btn-outline" onclick="AdminPanel.revokeCode('PROMPT2024')">Revoke</button>
+              </div>
+            </div>
+            <div class="code-display">
+              <code>EARLYBIRD</code>
+              <div>
+                <span class="badge badge-active">Active</span>
+                <button class="btn btn-sm btn-outline" onclick="AdminPanel.copyCode('EARLYBIRD')">Copy</button>
+                <button class="btn btn-sm btn-outline" onclick="AdminPanel.revokeCode('EARLYBIRD')">Revoke</button>
+              </div>
+            </div>
+            <div class="code-display">
+              <code>FOUNDER99</code>
+              <div>
+                <span class="badge badge-active">Active</span>
+                <button class="btn btn-sm btn-outline" onclick="AdminPanel.copyCode('FOUNDER99')">Copy</button>
+                <button class="btn btn-sm btn-outline" onclick="AdminPanel.revokeCode('FOUNDER99')">Revoke</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROMPTS SECTION -->
+      <div id="section-prompts" class="admin-section hidden">
+        <div class="admin-header">
+          <h1>📝 Prompt Library Management</h1>
+          <button class="btn btn-primary" onclick="window.location.href='developer.html'">
+            + Add New Prompt
+          </button>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>All Prompts</h2>
+            <input
+              type="text"
+              class="form-input"
+              placeholder="Search prompts..."
+              style="max-width: 300px;"
+            />
+          </div>
+
+          <table class="table-admin">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Downloads</th>
+                <th>Rating</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="promptsTable">
+              <tr>
+                <td colspan="7" class="text-center" style="padding: 2rem;">
+                  Loading prompts...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- MODERATION SECTION -->
+      <div id="section-moderation" class="admin-section hidden">
+        <div class="admin-header">
+          <h1>✅ Moderation Queue</h1>
+          <div class="quick-actions">
+            <button class="btn btn-primary" onclick="AdminPanel.approveAll()">
+              Approve All Safe
+            </button>
+            <button class="btn btn-outline" onclick="AdminPanel.refreshQueue()">
+              🔄 Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>Pending Submissions</h2>
+            <span class="badge badge-warning" id="pendingCount">0</span>
+          </div>
+
+          <div id="moderationQueue">
+            <p class="text-center text-secondary" style="padding: 2rem;">
+              No pending submissions. All clean! ✓
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- REVENUE SECTION -->
+      <div id="section-revenue" class="admin-section hidden">
+        <div class="admin-header">
+          <h1>💰 Revenue Dashboard</h1>
+          <button class="btn btn-outline" onclick="AdminPanel.exportRevenue()">
+            📥 Export Report
+          </button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card-admin">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value">$0</div>
+                <div class="stat-label">Ko-fi (Library Access)</div>
+                <div class="stat-change positive">0 sales @ $0.99</div>
+              </div>
+              <div class="stat-icon">☕</div>
+            </div>
+          </div>
+
+          <div class="stat-card-admin">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value">$0</div>
+                <div class="stat-label">Marketplace (Individual)</div>
+                <div class="stat-change positive">0 sales</div>
+              </div>
+              <div class="stat-icon">🛒</div>
+            </div>
+          </div>
+
+          <div class="stat-card-admin">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value">$0</div>
+                <div class="stat-label">Project Filez (Premium)</div>
+                <div class="stat-change positive">0 sales via Gumroad</div>
+              </div>
+              <div class="stat-icon">📁</div>
+            </div>
+          </div>
+
+          <div class="stat-card-admin">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value">$0</div>
+                <div class="stat-label">Developer Payouts</div>
+                <div class="stat-change">Owed to creators</div>
+              </div>
+              <div class="stat-icon">💸</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>Revenue Over Time</h2>
+          </div>
+          <div class="chart-placeholder">
+            📊 Revenue chart will appear here<br>
+            <small style="color: var(--text-tertiary);">Integrate Chart.js or similar</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS SECTION -->
+      <div id="section-settings" class="admin-section hidden">
+        <div class="admin-header">
+          <h1>⚙️ System Settings</h1>
+          <button class="btn btn-primary" onclick="AdminPanel.saveSettings()">
+            💾 Save Changes
+          </button>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>Security Settings</h2>
+          </div>
+
+          <div class="form-group">
+            <label for="adminPassword">Change Admin Password</label>
+            <input
+              type="password"
+              id="newAdminPassword"
+              class="form-input"
+              placeholder="Enter new password"
+            />
+            <small style="color: var(--text-tertiary);">
+              Update this in assets/js/admin.js for permanent change
+            </small>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>Payment Settings</h2>
+          </div>
+
+          <div class="form-group">
+            <label for="kofiUsername">Ko-fi Username</label>
+            <input
+              type="text"
+              id="kofiUsername"
+              class="form-input"
+              placeholder="your_kofi_username"
+              value="YOUR_KOFI_USERNAME"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="gumroadUsername">Gumroad Username</label>
+            <input
+              type="text"
+              id="gumroadUsername"
+              class="form-input"
+              placeholder="your_gumroad_username"
+              value="YOUR_GUMROAD_USERNAME"
+            />
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>Moderation Settings</h2>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" checked> Auto-approve prompts scoring 80+
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" checked> Enable profanity filter
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox"> Allow adult content (18+)
+            </label>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>⚠️ Danger Zone</h2>
+          </div>
+
+          <div class="alert alert-danger">
+            <strong>Warning:</strong> These actions are irreversible!
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button class="btn btn-outline" onclick="AdminPanel.clearCache()">
+              🗑️ Clear All Cache
+            </button>
+            <button class="btn btn-outline" onclick="AdminPanel.resetStats()">
+              ⚠️ Reset Statistics
+            </button>
+            <button class="btn" style="background: var(--admin-danger); color: white;" onclick="AdminPanel.factoryReset()">
+              💣 Factory Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Scripts - Load order matters! -->
+  <script src="assets/js/security.js"></script>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/bookmarklets.js"></script>
+  <script src="assets/js/webhook-handler.js"></script>
+  <script src="assets/js/error-recovery.js"></script>
+  <script src="assets/js/automation.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/mobile.js"></script>
+  <script src="assets/js/admin.js"></script> <!-- Load last - admin controls -->
+
+</body>
+</html>

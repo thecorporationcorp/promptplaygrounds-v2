@@ -1,0 +1,56 @@
+{
+  "name": "Prompt Playgrounds",
+  "short_name": "Prompts",
+  "description": "Professional AI prompts delivered as one-click bookmarklets. 100+ proven prompts for ChatGPT, Claude, and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#6366F1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%236366F1' rx='48'/><text x='96' y='140' font-size='120' text-anchor='middle' fill='white'>📌</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%236366F1' rx='128'/><text x='256' y='380' font-size='320' text-anchor='middle' fill='white'>📌</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities", "education"],
+  "shortcuts": [
+    {
+      "name": "Browse Prompts",
+      "short_name": "Library",
+      "description": "Browse the prompt library",
+      "url": "/hub.html",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='0.9em' font-size='90'>📚</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Submit Prompt",
+      "short_name": "Submit",
+      "description": "Sell your own prompts",
+      "url": "/developer.html",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='0.9em' font-size='90'>💰</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr"
+}

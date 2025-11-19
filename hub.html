@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Library - Prompt Playgrounds</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#6366F1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Browse 100+ professional AI prompts as bookmarklets">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📌</text></svg>">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="navbar-brand" aria-label="Prompt Playgrounds home">
+        <span aria-hidden="true">📌</span> Prompt Playgrounds
+      </a>
+
+      <ul class="navbar-nav" role="menubar">
+        <li role="none"><a href="hub.html" role="menuitem">Library</a></li>
+        <li role="none"><a href="#" onclick="PromptPlayground.setFilter('all'); return false;" role="menuitem">All Prompts</a></li>
+        <li role="none"><a href="developer.html" role="menuitem">Sell Prompts</a></li>
+        <li role="none"><a href="#" onclick="AuthSystem.revokeAccess(); window.location.href='index.html'; return false;" role="menuitem" aria-label="Sign out of your account">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <section class="hero" style="padding: 2rem 0;">
+    <div class="container">
+      <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Your Prompt Library</h1>
+      <p style="font-size: 1rem; margin-bottom: 1rem;">
+        Browse, search, and install professional AI prompts as bookmarklets
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="setup-bookmarks.html" class="btn btn-secondary">
+          ⚙️ Organize All Bookmarklets
+        </a>
+        <a href="how-it-works.html" class="btn btn-outline" style="color: white; border-color: white;">
+          📚 How to Use
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK SETUP ALERT -->
+  <section style="background: var(--bg-secondary); padding: 1rem 0;" id="setupAlert">
+    <div class="container">
+      <div class="alert alert-info" style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+        <div style="flex-grow: 1;">
+          <strong>⚡ New here?</strong> Get all your bookmarklets organized in 2 minutes with our one-click import tool!
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <a href="setup-bookmarks.html" class="btn btn-primary btn-sm">Setup Now</a>
+          <button class="btn btn-outline btn-sm" onclick="dismissSetupAlert()">Later</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH & FILTERS -->
+  <section style="background: var(--bg-secondary); padding: 1.5rem 0;" role="search" aria-label="Search and filter prompts">
+    <div class="container">
+      <!-- Search Bar -->
+      <div style="max-width: 600px; margin: 0 auto 1.5rem;">
+        <label for="searchInput" class="sr-only">Search prompts</label>
+        <input
+          type="search"
+          id="searchInput"
+          class="form-input"
+          placeholder="🔍 Search prompts... (try 'email', 'code', 'marketing')"
+          style="font-size: 1.125rem; padding: 1rem 1.5rem;"
+          aria-label="Search prompts by keyword"
+          role="searchbox"
+        />
+      </div>
+
+      <!-- Category Filters -->
+      <div class="filter-bar" role="toolbar" aria-label="Category filters">
+        <div class="filter-group">
+          <button class="filter-btn active" data-category="all" onclick="PromptPlayground.setFilter('all')" aria-pressed="true" aria-label="Show all categories">
+            All
+          </button>
+          <button class="filter-btn" data-category="Writing" onclick="PromptPlayground.setFilter('Writing')">
+            Writing
+          </button>
+          <button class="filter-btn" data-category="Coding" onclick="PromptPlayground.setFilter('Coding')">
+            Coding
+          </button>
+          <button class="filter-btn" data-category="Marketing" onclick="PromptPlayground.setFilter('Marketing')">
+            Marketing
+          </button>
+          <button class="filter-btn" data-category="Career" onclick="PromptPlayground.setFilter('Career')">
+            Career
+          </button>
+          <button class="filter-btn" data-category="Business" onclick="PromptPlayground.setFilter('Business')">
+            Business
+          </button>
+          <button class="filter-btn" data-category="Content" onclick="PromptPlayground.setFilter('Content')">
+            Content
+          </button>
+          <button class="filter-btn" data-category="Sales" onclick="PromptPlayground.setFilter('Sales')">
+            Sales
+          </button>
+          <button class="filter-btn" data-category="Education" onclick="PromptPlayground.setFilter('Education')">
+            Education
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section style="padding: 2rem 0;">
+    <div class="container">
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number" id="totalPromptsCount">100</div>
+          <div class="stat-label">Total Prompts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="purchasedCount">0</div>
+          <div class="stat-label">Your Prompts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="categoriesCount">20</div>
+          <div class="stat-label">Categories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">FREE</div>
+          <div class="stat-label">Updates Forever</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALLATION INSTRUCTIONS -->
+  <section style="background: var(--bg-secondary); padding: 1.5rem 0;">
+    <div class="container">
+      <div class="alert alert-info">
+        <strong>📚 Quick Start:</strong>
+        Show your bookmarks bar (
+        <code>Ctrl+Shift+B</code> or <code>Cmd+Shift+B</code>
+        ), then <strong>drag any bookmarklet button below to your bookmarks bar</strong>.
+        Click the bookmark when you're on ChatGPT or Claude to auto-load the prompt!
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMPTS GRID -->
+  <section>
+    <div class="container">
+      <h2 class="mb-xl">Browse Prompts</h2>
+
+      <div class="grid grid-3" id="promptsGrid">
+        <!-- Prompts will be dynamically loaded here -->
+        <div class="text-center" style="grid-column: 1/-1; padding: 3rem;">
+          <p class="text-secondary">Loading prompts...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Prompt Playgrounds</h4>
+          <p>Professional AI prompts, delivered as one-click bookmarklets.</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Product</h4>
+          <a href="index.html#how-it-works">How It Works</a>
+          <a href="hub.html">Browse Prompts</a>
+          <a href="how-it-works.html">Documentation</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Developers</h4>
+          <a href="developer.html">Sell Prompts</a>
+          <a href="developer-dashboard.html">Dashboard</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Support</h4>
+          <a href="#">Contact Us</a>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Prompt Playgrounds. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts - Load order matters! -->
+  <script src="assets/js/security.js"></script>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/bookmarklets.js"></script>
+  <script src="assets/js/webhook-handler.js"></script>
+  <script src="assets/js/error-recovery.js"></script>
+  <script src="assets/js/automation.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/mobile.js"></script>
+  <script src="assets/js/onboarding.js"></script> <!-- Load last - depends on all above -->
+
+  <script>
+    // Require authentication
+    if (!AuthSystem.hasAccess()) {
+      AuthSystem.showAccessGate();
+    }
+
+    // Initialize prompts with error boundary
+    PromptPlayground.init()
+      .then(() => {
+        // Verify prompts loaded successfully
+        if (!PromptPlayground.prompts || PromptPlayground.prompts.length === 0) {
+          throw new Error('No prompts loaded - check assets/data/prompts.json');
+        }
+
+        // Render all prompts
+        PromptPlayground.renderPrompts();
+
+        // Update stats
+        const stats = PromptPlayground.getStats();
+        document.getElementById('totalPromptsCount').textContent = stats.totalPrompts;
+        document.getElementById('purchasedCount').textContent = stats.purchasedCount;
+        document.getElementById('categoriesCount').textContent = stats.categories;
+
+        console.log('✓ Hub page loaded successfully');
+      })
+      .catch(error => {
+        console.error('⚠️ Critical initialization error:', error);
+
+        // Show user-friendly error message
+        const container = document.getElementById('promptsGrid');
+        if (container) {
+          container.innerHTML = `
+            <div class="alert alert-error" style="grid-column: 1/-1; max-width: 600px; margin: 0 auto;">
+              <h3 style="margin: 0 0 0.5rem;">⚠️ Unable to Load Prompts</h3>
+              <p style="margin: 0 0 1rem;">We're having trouble loading the prompt library. Please refresh the page or try again later.</p>
+              <p style="font-size: 0.875rem; opacity: 0.8; margin: 0 0 1rem;">Error: ${SecurityUtils.escapeHtml(error.message)}</p>
+              <button class="btn btn-primary" onclick="location.reload()">🔄 Refresh Page</button>
+            </div>
+          `;
+        }
+
+        // Also show in stats area
+        ['totalPromptsCount', 'purchasedCount', 'categoriesCount'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = '—';
+        });
+      });
+
+    // Dismiss setup alert
+    function dismissSetupAlert() {
+      document.getElementById('setupAlert').style.display = 'none';
+      localStorage.setItem('setupAlertDismissed', 'true');
+    }
+
+    // Check if setup alert was dismissed
+    if (localStorage.getItem('setupAlertDismissed') === 'true') {
+      document.getElementById('setupAlert').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

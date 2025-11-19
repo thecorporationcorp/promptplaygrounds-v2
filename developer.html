@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Sell Your Prompts - Prompt Playgrounds</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#6366F1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Turn your expertise into income. Sell AI prompts on Prompt Playgrounds.">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📌</text></svg>">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        📌 Prompt Playgrounds
+      </a>
+
+      <ul class="navbar-nav">
+        <li><a href="hub.html">Library</a></li>
+        <li><a href="developer.html">For Developers</a></li>
+        <li><a href="developer-dashboard.html">Dashboard</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Turn Your Prompts Into Income</h1>
+      <p>
+        Sell your expert prompts to thousands of users.<br/>
+        Set your own price. Keep 80% of every sale.
+      </p>
+
+      <div style="margin-top: 2rem;">
+        <a href="#submit" class="btn btn-secondary btn-lg">
+          Submit Your First Prompt
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS FOR DEVELOPERS -->
+  <section style="background: var(--bg-secondary); padding: 2rem 0;">
+    <div class="container">
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number">80%</div>
+          <div class="stat-label">Revenue Share</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">$2-$12</div>
+          <div class="stat-label">You Set Price</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">24-72h</div>
+          <div class="stat-label">Review Time</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1000s</div>
+          <div class="stat-label">Potential Users</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="container-narrow">
+      <h2 class="text-center">How It Works</h2>
+      <p class="text-center text-secondary mb-xl">
+        From submission to earnings in 4 simple steps
+      </p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h4>1️⃣ Submit Your Prompt</h4>
+          <p class="text-secondary">
+            Fill out the form below with your prompt, description, category, and pricing.
+            Make it clear, valuable, and well-tested.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>2️⃣ We Review (24-72h)</h4>
+          <p class="text-secondary">
+            Our moderation system checks for quality, appropriateness, and uniqueness.
+            We're liberal but maintain all-ages standards.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>3️⃣ Get Approved</h4>
+          <p class="text-secondary">
+            Once approved, your prompt goes live in the marketplace immediately.
+            We'll notify you via email.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>4️⃣ Earn Revenue</h4>
+          <p class="text-secondary">
+            Every time someone downloads your prompt, you earn 80% of the sale.
+            Payouts via PayPal monthly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDELINES -->
+  <section style="background: var(--bg-secondary);">
+    <div class="container-narrow">
+      <h2 class="text-center">Submission Guidelines</h2>
+      <p class="text-center text-secondary mb-xl">
+        What we're looking for in prompts
+      </p>
+
+      <div class="card">
+        <h4>✅ What We Accept</h4>
+        <ul>
+          <li><strong>High quality:</strong> Well-tested, proven prompts that deliver real value</li>
+          <li><strong>Specific:</strong> Solves a clear problem or accomplishes a defined task</li>
+          <li><strong>Original:</strong> Your own work, not copied from others</li>
+          <li><strong>Clear instructions:</strong> Easy to understand and use</li>
+          <li><strong>Professional:</strong> Well-written, free of errors</li>
+          <li><strong>All-ages appropriate:</strong> No explicit content or harmful instructions</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>❌ What We Reject</h4>
+        <ul>
+          <li><strong>Hate speech:</strong> No racist, fascist, or discriminatory content</li>
+          <li><strong>Harmful content:</strong> Nothing that could harm users (especially minors)</li>
+          <li><strong>Plagiarized:</strong> Copied from others without attribution</li>
+          <li><strong>Low effort:</strong> Generic, untested, or poorly written prompts</li>
+          <li><strong>Duplicates:</strong> Substantially similar to existing prompts</li>
+          <li><strong>Misleading:</strong> False claims about what the prompt does</li>
+        </ul>
+      </div>
+
+      <div class="alert alert-info">
+        <strong>💡 Pro Tip:</strong> The best prompts are specific, actionable, and save users
+        significant time or effort. Think: "What repetitive task do I solve brilliantly with AI?"
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBMISSION FORM -->
+  <section id="submit">
+    <div class="container-narrow">
+      <h2 class="text-center">Submit Your Prompt</h2>
+      <p class="text-center text-secondary mb-xl">
+        Fill out the form below to submit your prompt for review
+      </p>
+
+      <div class="card">
+        <form id="promptSubmissionForm">
+          <!-- Developer Info -->
+          <h3 class="mb-md">Your Information</h3>
+
+          <div class="form-group">
+            <label class="form-label">Your Name/Handle *</label>
+            <input
+              type="text"
+              name="developerName"
+              class="form-input"
+              placeholder="How you want to be credited"
+              required
+            />
+            <p class="form-help">This will be shown as the prompt creator</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input
+              type="email"
+              name="developerEmail"
+              class="form-input"
+              placeholder="your@email.com"
+              required
+            />
+            <p class="form-help">For notifications and PayPal payouts</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">PayPal Email</label>
+            <input
+              type="email"
+              name="paypalEmail"
+              class="form-input"
+              placeholder="paypal@email.com"
+            />
+            <p class="form-help">Where you want to receive payments (can add later)</p>
+          </div>
+
+          <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color);">
+
+          <!-- Prompt Details -->
+          <h3 class="mb-md">Prompt Details</h3>
+
+          <div class="form-group">
+            <label class="form-label">Prompt Title *</label>
+            <input
+              type="text"
+              name="promptTitle"
+              class="form-input"
+              placeholder="e.g., Email Wizard Pro, Code Review Assistant"
+              required
+            />
+            <p class="form-help">Keep it clear and descriptive (max 50 characters)</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Category *</label>
+            <select name="promptCategory" class="form-select" required>
+              <option value="">Select a category...</option>
+              <option value="Writing">Writing</option>
+              <option value="Coding">Coding</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Career">Career</option>
+              <option value="Business">Business</option>
+              <option value="Content">Content</option>
+              <option value="Sales">Sales</option>
+              <option value="Education">Education</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="Product">Product</option>
+              <option value="PR">PR</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Short Description *</label>
+            <input
+              type="text"
+              name="promptDescription"
+              class="form-input"
+              placeholder="One sentence describing what this prompt does"
+              required
+            />
+            <p class="form-help">This shows in the prompt card (max 150 characters)</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">The Prompt *</label>
+            <textarea
+              name="promptText"
+              class="form-textarea"
+              placeholder="Paste your full prompt here. Be specific and include clear instructions..."
+              style="min-height: 200px;"
+              required
+            ></textarea>
+            <p class="form-help">The actual prompt that will be injected into AI chats</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tags</label>
+            <input
+              type="text"
+              name="promptTags"
+              class="form-input"
+              placeholder="email, professional, business (comma-separated)"
+            />
+            <p class="form-help">Help users find your prompt (3-5 keywords)</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Example Use Case</label>
+            <textarea
+              name="promptExample"
+              class="form-textarea"
+              placeholder="Describe a specific example of how someone would use this prompt..."
+            ></textarea>
+            <p class="form-help">Helps users understand the value (optional but recommended)</p>
+          </div>
+
+          <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color);">
+
+          <!-- Pricing -->
+          <h3 class="mb-md">Pricing</h3>
+
+          <div class="form-group">
+            <label class="form-label">Price (USD) *</label>
+            <select name="promptPrice" class="form-select" required>
+              <option value="">Select a price...</option>
+              <option value="0.99">$0.99 - Simple/Quick prompts</option>
+              <option value="1.99">$1.99</option>
+              <option value="2.99">$2.99</option>
+              <option value="3.99">$3.99</option>
+              <option value="4.99">$4.99 - Standard prompts</option>
+              <option value="5.99">$5.99</option>
+              <option value="6.99">$6.99</option>
+              <option value="7.99">$7.99 - Complex prompts</option>
+              <option value="8.99">$8.99</option>
+              <option value="9.99">$9.99</option>
+              <option value="10.99">$10.99</option>
+              <option value="11.99">$11.99 - Premium prompts</option>
+            </select>
+            <p class="form-help">You earn 80% of this amount per sale</p>
+          </div>
+
+          <!-- Agreement -->
+          <div class="form-group">
+            <label style="display: flex; align-items: start; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" name="agreement" required style="margin-top: 0.25rem;" />
+              <span style="font-size: 0.875rem; color: var(--text-secondary);">
+                I confirm this is my original work, it follows the guidelines, and I agree to the
+                80/20 revenue split and all-ages content policy.
+              </span>
+            </label>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-primary btn-lg btn-block">
+            Submit for Review
+          </button>
+
+          <p class="text-center text-secondary" style="margin-top: 1rem; font-size: 0.875rem;">
+            You'll receive an email within 24-72 hours with our decision
+          </p>
+        </form>
+
+        <!-- Success message (hidden by default) -->
+        <div id="submitSuccess" style="display: none;">
+          <div class="alert alert-success">
+            <h3>✓ Submission Received!</h3>
+            <p>
+              Thank you for submitting your prompt. We'll review it within 24-72 hours and
+              send you an email with our decision.
+            </p>
+            <p class="mb-0">
+              <strong>What happens next?</strong><br/>
+              1. Automated quality check<br/>
+              2. Manual review for appropriateness<br/>
+              3. Email notification with decision<br/>
+              4. If approved, your prompt goes live immediately!
+            </p>
+          </div>
+
+          <button class="btn btn-outline btn-block mt-lg" onclick="location.reload()">
+            Submit Another Prompt
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EARNINGS CALCULATOR -->
+  <section style="background: var(--bg-secondary);">
+    <div class="container-narrow">
+      <h2 class="text-center">Earnings Calculator</h2>
+      <p class="text-center text-secondary mb-xl">
+        See your potential earnings
+      </p>
+
+      <div class="card">
+        <div class="form-group">
+          <label class="form-label">Your Prompt Price</label>
+          <select id="calcPrice" class="form-select" onchange="calculateEarnings()">
+            <option value="0.99">$0.99</option>
+            <option value="2.99">$2.99</option>
+            <option value="4.99" selected>$4.99</option>
+            <option value="7.99">$7.99</option>
+            <option value="9.99">$9.99</option>
+            <option value="11.99">$11.99</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Estimated Downloads per Month</label>
+          <input
+            type="range"
+            id="calcDownloads"
+            min="10"
+            max="500"
+            value="50"
+            step="10"
+            class="form-input"
+            oninput="calculateEarnings()"
+            style="cursor: pointer;"
+          />
+          <div class="text-center text-secondary">
+            <span id="downloadsDisplay">50</span> downloads/month
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem; padding: 2rem; background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div class="text-secondary">Your Monthly Earnings</div>
+          <div style="font-size: 3rem; font-weight: 700; color: var(--primary); margin: 1rem 0;" id="earningsAmount">
+            $199.60
+          </div>
+          <div class="text-secondary" style="font-size: 0.875rem;">
+            Based on 80% revenue share
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container-narrow">
+      <h2 class="text-center">Developer FAQ</h2>
+
+      <div class="card">
+        <h4>How do payouts work?</h4>
+        <p class="text-secondary mb-0">
+          Payouts are processed monthly via PayPal. You'll receive 80% of all sales from the
+          previous month. Minimum payout is $10.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Can I submit multiple prompts?</h4>
+        <p class="text-secondary mb-0">
+          Yes! There's no limit. Submit as many high-quality prompts as you want.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>What if my prompt gets rejected?</h4>
+        <p class="text-secondary mb-0">
+          We'll email you with specific feedback on why it was rejected and suggestions for
+          improvement. You can revise and resubmit.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Can I update my prompt after it's live?</h4>
+        <p class="text-secondary mb-0">
+          Yes, through your developer dashboard. Updates are reviewed within 24 hours.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Who owns the prompt?</h4>
+        <p class="text-secondary mb-0">
+          You retain full ownership. We just have a license to distribute it on our platform.
+          You can sell it elsewhere too.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Prompt Playgrounds</h4>
+          <p>Professional AI prompts, delivered as one-click bookmarklets.</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>For Users</h4>
+          <a href="index.html">Home</a>
+          <a href="hub.html">Browse Prompts</a>
+          <a href="index.html#pricing">Pricing</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>For Developers</h4>
+          <a href="developer.html">Sell Prompts</a>
+          <a href="developer-dashboard.html">Dashboard</a>
+          <a href="#guidelines">Guidelines</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Support</h4>
+          <a href="#">Contact Us</a>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Prompt Playgrounds. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/auth.js"></script>
+
+  <script>
+    // Handle form submission
+    document.getElementById('promptSubmissionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form data
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      // In production, this would send to a server
+      // For now, save to localStorage
+      const submissions = JSON.parse(localStorage.getItem('promptSubmissions') || '[]');
+      data.id = 'prompt_' + Date.now();
+      data.status = 'pending';
+      data.submittedAt = new Date().toISOString();
+      submissions.push(data);
+      localStorage.setItem('promptSubmissions', JSON.stringify(submissions));
+
+      // Show success message
+      document.getElementById('promptSubmissionForm').style.display = 'none';
+      document.getElementById('submitSuccess').style.display = 'block';
+
+      // Scroll to success message
+      document.getElementById('submitSuccess').scrollIntoView({ behavior: 'smooth' });
+
+      console.log('Prompt submitted:', data);
+    });
+
+    // Earnings calculator
+    function calculateEarnings() {
+      const price = parseFloat(document.getElementById('calcPrice').value);
+      const downloads = parseInt(document.getElementById('calcDownloads').value);
+      const earnings = (price * downloads * 0.8).toFixed(2);
+
+      document.getElementById('downloadsDisplay').textContent = downloads;
+      document.getElementById('earningsAmount').textContent = '$' + earnings;
+    }
+
+    // Initialize calculator
+    calculateEarnings();
+  </script>
+
+  <script src="assets/js/mobile.js"></script>
+
+</body>
+</html>

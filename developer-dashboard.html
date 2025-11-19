@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Developer Dashboard - Prompt Playgrounds</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#6366F1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        📌 Prompt Playgrounds
+      </a>
+
+      <ul class="navbar-nav">
+        <li><a href="hub.html">Library</a></li>
+        <li><a href="developer.html">Submit Prompt</a></li>
+        <li><a href="developer-dashboard.html">Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container" style="padding: 3rem 0;">
+    <h1>Developer Dashboard</h1>
+    <p class="text-secondary mb-xl">Manage your submitted prompts and track earnings</p>
+
+    <!-- STATS -->
+    <div class="stats mb-xl">
+      <div class="stat-card">
+        <div class="stat-number" id="totalSubmitted">0</div>
+        <div class="stat-label">Submitted</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="totalApproved">0</div>
+        <div class="stat-label">Approved</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="totalPending">0</div>
+        <div class="stat-label">Pending</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="totalEarnings">$0</div>
+        <div class="stat-label">Earnings (Est.)</div>
+      </div>
+    </div>
+
+    <!-- SUBMISSIONS TABLE -->
+    <div class="card">
+      <h3 class="mb-md">Your Submissions</h3>
+
+      <div id="submissionsContainer">
+        <p class="text-secondary text-center" style="padding: 2rem;">
+          No submissions yet. <a href="developer.html">Submit your first prompt →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/moderation.js"></script>
+
+  <script>
+    // Load and display submissions
+    function loadSubmissions() {
+      const submissions = JSON.parse(localStorage.getItem('promptSubmissions') || '[]');
+
+      if (submissions.length === 0) {
+        return;
+      }
+
+      // Update stats
+      const approved = submissions.filter(s => s.status === 'approved').length;
+      const pending = submissions.filter(s => s.status === 'pending').length;
+
+      document.getElementById('totalSubmitted').textContent = submissions.length;
+      document.getElementById('totalApproved').textContent = approved;
+      document.getElementById('totalPending').textContent = pending;
+
+      // Render submissions
+      const container = document.getElementById('submissionsContainer');
+      container.innerHTML = `
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--border-color); text-align: left;">
+              <th style="padding: 1rem;">Prompt Title</th>
+              <th style="padding: 1rem;">Category</th>
+              <th style="padding: 1rem;">Price</th>
+              <th style="padding: 1rem;">Status</th>
+              <th style="padding: 1rem;">Submitted</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${submissions.map(s => `
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 1rem;">${s.promptTitle}</td>
+                <td style="padding: 1rem;"><span class="badge badge-secondary">${s.promptCategory}</span></td>
+                <td style="padding: 1rem;">$${s.promptPrice}</td>
+                <td style="padding: 1rem;">
+                  <span class="badge ${
+                    s.status === 'approved' ? 'badge-success' :
+                    s.status === 'rejected' ? 'badge-warning' :
+                    'badge-secondary'
+                  }">
+                    ${s.status || 'pending'}
+                  </span>
+                </td>
+                <td style="padding: 1rem; color: var(--text-tertiary); font-size: 0.875rem;">
+                  ${new Date(s.submittedAt).toLocaleDateString()}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    loadSubmissions();
+  </script>
+
+  <script src="assets/js/mobile.js"></script>
+
+</body>
+</html>

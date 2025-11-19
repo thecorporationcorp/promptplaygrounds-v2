@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Prompt Playground - AI Prompts as One-Click Bookmarklets</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#6366F1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Browse 100+ proven AI prompts delivered as one-click bookmarklets. Works with ChatGPT, Claude, and any AI chat. Access for just 99¢.">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Prompt Playground - AI Prompts as Bookmarklets">
+  <meta property="og:description" content="Professional AI prompts, one-click away. 99¢ gets you lifetime access.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (emoji as temp) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📌</text></svg>">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        📌 Prompt Playground
+      </a>
+
+      <ul class="navbar-nav">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="developer.html">For Developers</a></li>
+        <li><a href="#" onclick="AuthSystem.showAccessGate(); return false;" class="btn btn-primary btn-sm">Sign In</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <h1>Professional AI Prompts,<br/>One Click Away</h1>
+      <p>
+        Stop copy-pasting prompts. Get proven, expert-crafted AI prompts delivered as bookmarklets.<br/>
+        Drag to your bookmark bar. Click to use. Works with ChatGPT, Claude, and any AI chat.
+      </p>
+
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <a href="#pricing" class="btn btn-secondary btn-lg">
+          Get Access - 99¢
+        </a>
+        <a href="#demo" class="btn btn-outline btn-lg" style="color: white; border-color: white;">
+          See Demo
+        </a>
+      </div>
+
+      <p style="margin-top: 2rem; font-size: 0.875rem; opacity: 0.8;">
+        ✓ One-time payment &nbsp;•&nbsp; ✓ 100+ prompts &nbsp;•&nbsp; ✓ Lifetime access
+      </p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section style="background: var(--bg-secondary); padding: 2rem 0;">
+    <div class="container">
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Proven Prompts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">20+</div>
+          <div class="stat-label">Categories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0.5s</div>
+          <div class="stat-label">To Install</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">99¢</div>
+          <div class="stat-label">One-Time Fee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works">
+    <div class="container-narrow">
+      <h2 class="text-center">How It Works</h2>
+      <p class="text-center text-secondary mb-xl">
+        Three steps to AI prompt mastery
+      </p>
+
+      <div class="grid grid-3">
+        <div class="card text-center">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">1️⃣</div>
+          <h4>Pay 99¢</h4>
+          <p>Get instant access to our entire library of professional AI prompts.</p>
+        </div>
+
+        <div class="card text-center">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">2️⃣</div>
+          <h4>Drag to Bookmarks</h4>
+          <p>Browse prompts and drag your favorites to your browser's bookmark bar.</p>
+        </div>
+
+        <div class="card text-center">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">3️⃣</div>
+          <h4>Click to Use</h4>
+          <p>On ChatGPT or Claude, click the bookmark. The perfect prompt auto-loads!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section id="demo" style="background: var(--bg-secondary);">
+    <div class="container-narrow">
+      <h2 class="text-center">See It In Action</h2>
+      <p class="text-center text-secondary mb-xl">
+        Here's a real bookmarklet from our library (try dragging it!)
+      </p>
+
+      <div class="card">
+        <h3>📧 Email Wizard Pro</h3>
+        <p class="text-secondary">
+          Professional email writer that adapts tone, length, and formality based on context.
+          Handles everything from cold outreach to customer support.
+        </p>
+
+        <div style="text-align: center; margin: 2rem 0;">
+          <a
+            href="javascript:(function()%7Bconst%20prompt%3D'You%20are%20an%20expert%20email%20communication%20specialist.%20Analyze%20the%20user%5C's%20brief%20notes%20and%20context%2C%20then%20write%20a%20professional%2C%20well-structured%20email.%20User%5C's%20notes%3A'%3Bconst%20textarea%3Ddocument.querySelector('textarea')%7C%7Cdocument.querySelector('%5Bcontenteditable%3D%22true%22%5D')%3Bif(textarea)%7Bif(textarea.tagName%3D%3D%3D'TEXTAREA')%7Btextarea.value%3Dprompt%3Btextarea.dispatchEvent(new%20Event('input'%2C%7Bbubbles%3Atrue%7D))%7Delse%7Btextarea.textContent%3Dprompt%3Btextarea.dispatchEvent(new%20Event('input'%2C%7Bbubbles%3Atrue%7D))%7D%7D%7D)()%3B"
+            class="bookmarklet-button"
+            onclick="event.preventDefault(); alert('To install: Drag this button to your bookmarks bar!\n\nTo use: Click the bookmark when you\'re on ChatGPT or Claude.');"
+          >
+            📌 Email Wizard Pro
+          </a>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>Try it:</strong> Drag the button above to your bookmarks bar. Then go to ChatGPT
+          or Claude and click it. The prompt auto-loads!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROMPTS -->
+  <section>
+    <div class="container">
+      <h2 class="text-center">Featured Prompts</h2>
+      <p class="text-center text-secondary mb-xl">
+        Professional-grade prompts that actually work
+      </p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="badge badge-secondary mb-md">Writing</span>
+          <h4>Email Wizard Pro</h4>
+          <p class="text-secondary">Write professional emails in seconds. Adapts to any context.</p>
+          <div class="rating">★ 4.8</div>
+        </div>
+
+        <div class="card">
+          <span class="badge badge-secondary mb-md">Coding</span>
+          <h4>Code Review Assistant</h4>
+          <p class="text-secondary">Deep code reviews checking bugs, security, and best practices.</p>
+          <div class="rating">★ 4.9</div>
+        </div>
+
+        <div class="card">
+          <span class="badge badge-secondary mb-md">Marketing</span>
+          <h4>Viral Thread Creator</h4>
+          <p class="text-secondary">Create engaging Twitter/X threads optimized for engagement.</p>
+          <div class="rating">★ 4.7</div>
+        </div>
+
+        <div class="card">
+          <span class="badge badge-secondary mb-md">Career</span>
+          <h4>ATS Resume Optimizer</h4>
+          <p class="text-secondary">Optimize resumes to pass applicant tracking systems.</p>
+          <div class="rating">★ 4.9</div>
+        </div>
+
+        <div class="card">
+          <span class="badge badge-secondary mb-md">Content</span>
+          <h4>SEO Blog Post Writer</h4>
+          <p class="text-secondary">Write SEO-optimized blog posts that rank and convert.</p>
+          <div class="rating">★ 4.7</div>
+        </div>
+
+        <div class="card">
+          <span class="badge badge-secondary mb-md">Business</span>
+          <h4>Meeting Minutes Master</h4>
+          <p class="text-secondary">Transform messy notes into professional meeting minutes.</p>
+          <div class="rating">★ 4.7</div>
+        </div>
+      </div>
+
+      <div class="text-center mt-xl">
+        <p class="text-secondary">...and 94 more prompts covering 20+ categories</p>
+        <a href="#pricing" class="btn btn-primary btn-lg mt-md">
+          Get Full Access
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY BOOKMARKLETS -->
+  <section style="background: var(--bg-secondary);">
+    <div class="container-narrow">
+      <h2 class="text-center">Why Bookmarklets?</h2>
+      <p class="text-center text-secondary mb-xl">
+        The smartest way to manage your AI prompts
+      </p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h4>⚡ Instant</h4>
+          <p class="text-secondary">One click loads the perfect prompt. No copy-pasting, no switching tabs.</p>
+        </div>
+
+        <div class="card">
+          <h4>🔒 No Permissions</h4>
+          <p class="text-secondary">Unlike browser extensions, bookmarklets don't need access to your data.</p>
+        </div>
+
+        <div class="card">
+          <h4>🌍 Works Everywhere</h4>
+          <p class="text-secondary">Any browser, any device. ChatGPT, Claude, Gemini - it all works.</p>
+        </div>
+
+        <div class="card">
+          <h4>💾 Yours Forever</h4>
+          <p class="text-secondary">Export your bookmarks, backup them up, keep them forever. You own them.</p>
+        </div>
+
+        <div class="card">
+          <h4>📦 No Installation</h4>
+          <p class="text-secondary">Just drag to bookmark bar. Takes 2 seconds. No app downloads.</p>
+        </div>
+
+        <div class="card">
+          <h4>🚀 Lightning Fast</h4>
+          <p class="text-secondary">No API calls, no loading. Instant injection every single time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container-narrow">
+      <h2 class="text-center">Simple, Honest Pricing</h2>
+      <p class="text-center text-secondary mb-xl">
+        Pay once, access forever
+      </p>
+
+      <div class="card" style="max-width: 500px; margin: 0 auto; text-align: center; border: 2px solid var(--primary);">
+        <div style="font-size: 4rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem;">
+          99¢
+        </div>
+
+        <h3 style="margin-bottom: 1rem;">Lifetime Access</h3>
+
+        <ul style="text-align: left; margin: 2rem 0; list-style: none; padding: 0;">
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+            ✓ Access to entire prompt library (100+ prompts)
+          </li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+            ✓ All future prompts included (new ones added weekly)
+          </li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+            ✓ Works with ChatGPT, Claude, Gemini, and more
+          </li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+            ✓ Instant bookmarklet installation
+          </li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+            ✓ No subscription, no recurring fees
+          </li>
+          <li style="padding: 0.5rem 0;">
+            ✓ Lifetime updates and support
+          </li>
+        </ul>
+
+        <a href="https://ko-fi.com/YOUR_KOFI_USERNAME" target="_blank" class="btn btn-secondary btn-lg btn-block" style="margin-top: 2rem;">
+          Get Access Now - 99¢
+        </a>
+
+        <p class="text-secondary" style="font-size: 0.875rem; margin-top: 1rem;">
+          Secure payment via Ko-fi • Instant delivery • 100% satisfaction guaranteed
+        </p>
+      </div>
+
+      <div class="alert alert-info mt-xl" style="max-width: 500px; margin: 2rem auto 0;">
+        <strong>After payment:</strong> You'll receive an access code via Ko-fi message.
+        Enter it above to unlock the library!
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR DEVELOPERS -->
+  <section style="background: linear-gradient(135deg, var(--bg-dark) 0%, #1f2937 100%); color: white;">
+    <div class="container-narrow">
+      <h2 class="text-center" style="color: white;">Sell Your Prompts</h2>
+      <p class="text-center mb-xl" style="color: rgba(255,255,255,0.8);">
+        Turn your expertise into income
+      </p>
+
+      <div class="card">
+        <h3>💰 Earn From Your Prompts</h3>
+        <p class="text-secondary">
+          Have a killer prompt? Sell it on Prompt Playground and earn from every download.
+        </p>
+
+        <ul style="margin: 1.5rem 0;">
+          <li>Set your own price ($2-$20)</li>
+          <li>Keep 80% of every sale</li>
+          <li>Reach thousands of users</li>
+          <li>Simple submission process</li>
+        </ul>
+
+        <a href="developer.html" class="btn btn-primary btn-block">
+          Become a Seller
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container-narrow">
+      <h2 class="text-center">Frequently Asked Questions</h2>
+
+      <div class="card">
+        <h4>What exactly are bookmarklets?</h4>
+        <p class="text-secondary mb-0">
+          Bookmarklets are special bookmarks that run JavaScript code. Instead of going to a website,
+          they perform an action - in this case, injecting a prompt into your AI chat. They're safe,
+          fast, and work in any browser.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Will this work with my AI tool?</h4>
+        <p class="text-secondary mb-0">
+          Yes! Our bookmarklets work with ChatGPT, Claude, Google Gemini, and any other AI chat
+          interface. If it has a text input, our bookmarklets can inject prompts into it.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Is this a subscription?</h4>
+        <p class="text-secondary mb-0">
+          No! You pay 99¢ once and get lifetime access. No recurring fees, no hidden costs.
+          You own the bookmarklets forever.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>How do I get my access code after paying?</h4>
+        <p class="text-secondary mb-0">
+          After payment on Ko-fi, you'll receive an access code via Ko-fi message within a few minutes.
+          Enter it on this site to unlock the library. Check your Ko-fi notifications!
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Can I share my bookmarklets?</h4>
+        <p class="text-secondary mb-0">
+          Your bookmarklets are yours to use. However, sharing access codes violates our terms.
+          Each access code is for individual use only.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>What if I have problems?</h4>
+        <p class="text-secondary mb-0">
+          Email us at support@promptplayground.com (example) or message us on Ko-fi.
+          We typically respond within 24 hours.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Prompt Playground</h4>
+          <p>Professional AI prompts, delivered as one-click bookmarklets.</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Product</h4>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="hub.html">Browse Prompts</a>
+          <a href="how-it-works.html">Documentation</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Developers</h4>
+          <a href="developer.html">Sell Prompts</a>
+          <a href="developer-dashboard.html">Dashboard</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Prompt Playground. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/bookmarklets.js"></script>
+  <script src="assets/js/mobile.js"></script>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

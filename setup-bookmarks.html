@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Setup Your Bookmarklets - Prompt Playgrounds</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#6366F1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+
+  <style>
+    .setup-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .setup-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .setup-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .setup-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .method-card {
+      background: var(--bg-main);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: all var(--transition-base);
+      cursor: pointer;
+    }
+
+    .method-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .method-card.recommended {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+    }
+
+    .method-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .method-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .method-desc {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .recommended-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .folder-preview {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .folder-item {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .folder-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+
+    .folder-icon {
+      font-size: 1.5rem;
+    }
+
+    .folder-name {
+      font-weight: 700;
+      font-size: 1.125rem;
+      flex-grow: 1;
+    }
+
+    .folder-count {
+      background: var(--bg-tertiary);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .folder-contents {
+      display: none;
+      padding-left: 2.5rem;
+    }
+
+    .folder-contents.expanded {
+      display: block;
+    }
+
+    .bookmark-item {
+      padding: 0.5rem 0;
+    }
+
+    .setup-step {
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    .setup-step h4 {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .progress-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .progress-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+
+    .progress-step::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem;
+      left: 50%;
+      right: -50%;
+      height: 2px;
+      background: var(--border-color);
+      z-index: -1;
+    }
+
+    .progress-step:last-child::before {
+      display: none;
+    }
+
+    .progress-dot {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border-color);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-step.active .progress-dot {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .progress-step.complete .progress-dot {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    #downloadSection {
+      display: none;
+    }
+
+    #manualSection {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        📌 Prompt Playgrounds
+      </a>
+      <ul class="navbar-nav">
+        <li><a href="hub.html">Library</a></li>
+        <li><a href="setup-bookmarks.html">Setup Guide</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="setup-container">
+    <!-- HEADER -->
+    <div class="setup-header">
+      <h1>⚙️ Setup Your Bookmarklets</h1>
+      <p class="text-secondary" style="font-size: 1.125rem;">
+        Choose how you'd like to organize your AI prompt library
+      </p>
+    </div>
+
+    <!-- SETUP METHODS -->
+    <div class="setup-methods">
+      <!-- Method 1: One-Click Import -->
+      <div class="method-card recommended" onclick="showDownloadMethod()">
+        <div class="recommended-badge">Recommended</div>
+        <div class="method-icon">⚡</div>
+        <h3 class="method-title">One-Click Import</h3>
+        <p class="method-desc">
+          Download a file and import all bookmarklets at once. Organized into folders automatically.
+        </p>
+        <div class="btn btn-primary">Choose This Method</div>
+        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-tertiary);">
+          ⏱️ Takes ~2 minutes
+        </p>
+      </div>
+
+      <!-- Method 2: Manual Organization -->
+      <div class="method-card" onclick="showManualMethod()">
+        <div class="method-icon">🎯</div>
+        <h3 class="method-title">Manual Setup</h3>
+        <p class="method-desc">
+          Drag bookmarklets one by one to your bookmarks bar. Full control over organization.
+        </p>
+        <div class="btn btn-outline">Choose This Method</div>
+        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-tertiary);">
+          ⏱️ Takes ~10 minutes
+        </p>
+      </div>
+
+      <!-- Method 3: Quick Start -->
+      <div class="method-card" onclick="window.location.href='hub.html'">
+        <div class="method-icon">🚀</div>
+        <h3 class="method-title">Skip Setup</h3>
+        <p class="method-desc">
+          Browse prompts and add bookmarklets as you need them. No organization needed.
+        </p>
+        <div class="btn btn-outline">Browse Library</div>
+        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-tertiary);">
+          ⏱️ Start immediately
+        </p>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD METHOD -->
+    <div id="downloadSection">
+      <div class="card">
+        <h2>📥 One-Click Import Setup</h2>
+
+        <div class="alert alert-info">
+          <strong>Best method!</strong> All your bookmarklets will be imported with
+          organized folders in just 2 steps.
+        </div>
+
+        <div class="setup-step">
+          <h4>
+            <span class="step-number">1</span>
+            Download Bookmarks File
+          </h4>
+          <p class="text-secondary">
+            Click the button below to download a file containing all your prompts
+            organized by category.
+          </p>
+          <button class="btn btn-primary btn-lg mt-md" onclick="downloadBookmarks()">
+            📥 Download Bookmarks File
+          </button>
+          <p class="text-secondary mt-sm" style="font-size: 0.875rem;">
+            File name: <code>prompt-playgrounds-bookmarks.html</code>
+          </p>
+        </div>
+
+        <div class="setup-step">
+          <h4>
+            <span class="step-number">2</span>
+            Import Into Browser
+          </h4>
+          <div id="browserInstructions">
+            <!-- Will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="alert alert-success mt-lg">
+          <strong>✓ That's it!</strong> Your bookmarks bar will now have a folder called
+          "AI Prompts - Prompt Playgrounds" with all your prompts organized by category.
+        </div>
+      </div>
+    </div>
+
+    <!-- MANUAL METHOD -->
+    <div id="manualSection">
+      <div class="card">
+        <h2>🎯 Manual Setup</h2>
+
+        <div class="setup-step">
+          <h4>
+            <span class="step-number">1</span>
+            Show Your Bookmarks Bar
+          </h4>
+          <p class="text-secondary">
+            Press <code>Ctrl+Shift+B</code> (Windows) or <code>Cmd+Shift+B</code> (Mac)
+          </p>
+        </div>
+
+        <div class="setup-step">
+          <h4>
+            <span class="step-number">2</span>
+            Drag Bookmarklets Below
+          </h4>
+          <p class="text-secondary">
+            Click folders to expand, then drag each bookmarklet to your bookmarks bar.
+            We recommend creating folders to match the organization below.
+          </p>
+        </div>
+
+        <!-- Folder Preview -->
+        <div class="folder-preview">
+          <h3 class="mb-lg">📁 Your Bookmarklets (Organized by Category)</h3>
+
+          <div id="folderList">
+            <p class="text-secondary">Loading your bookmarklets...</p>
+          </div>
+        </div>
+
+        <div class="alert alert-info mt-lg">
+          <strong>💡 Tip:</strong> Right-click your bookmarks bar and create a folder
+          called "AI Prompts". Then drag all bookmarklets into it for easy organization!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/bookmarklets.js"></script>
+  <script src="assets/js/bookmark-setup.js"></script>
+  <script src="assets/js/app.js"></script>
+
+  <script>
+    // Check access
+    if (!AuthSystem.hasAccess()) {
+      AuthSystem.showAccessGate();
+    }
+
+    // Load prompts and initialize
+    let userPrompts = [];
+
+    PromptPlayground.init().then(() => {
+      // Get user's purchased prompts (for now, all prompts)
+      userPrompts = PromptPlayground.prompts;
+
+      // Show browser-specific instructions
+      const instructions = BookmarkSetup.getBrowserInstructions();
+      document.getElementById('browserInstructions').innerHTML = instructions;
+    });
+
+    function showDownloadMethod() {
+      document.getElementById('downloadSection').style.display = 'block';
+      document.getElementById('manualSection').style.display = 'none';
+      document.getElementById('downloadSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showManualMethod() {
+      document.getElementById('manualSection').style.display = 'block';
+      document.getElementById('downloadSection').style.display = 'none';
+
+      // Render folders
+      renderFolders();
+
+      document.getElementById('manualSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function downloadBookmarks() {
+      if (userPrompts.length === 0) {
+        alert('Loading prompts... Please wait a moment and try again.');
+        return;
+      }
+
+      // Generate bookmark file
+      const bookmarkHTML = BookmarkSetup.generateBookmarkFile(userPrompts, {
+        folderName: 'AI Prompts - Prompt Playgrounds',
+        organizeByCategory: true,
+        addTimestamps: true
+      });
+
+      // Download file
+      BookmarkSetup.downloadBookmarkFile(bookmarkHTML);
+
+      // Show success message
+      setTimeout(() => {
+        alert('✓ Bookmark file downloaded!\n\nNow import it into your browser using the instructions above.');
+      }, 500);
+    }
+
+    function renderFolders() {
+      const categories = BookmarkSetup.groupByCategory(userPrompts);
+      const container = document.getElementById('folderList');
+
+      if (Object.keys(categories).length === 0) {
+        container.innerHTML = '<p class="text-secondary">No prompts available yet.</p>';
+        return;
+      }
+
+      let html = '';
+
+      for (const [category, prompts] of Object.entries(categories)) {
+        html += `
+          <div class="folder-item">
+            <div class="folder-header" onclick="toggleFolder('folder-${category.replace(/\s+/g, '-')}')">
+              <span class="folder-icon">📁</span>
+              <span class="folder-name">${category}</span>
+              <span class="folder-count">${prompts.length} ${prompts.length === 1 ? 'prompt' : 'prompts'}</span>
+            </div>
+            <div class="folder-contents" id="folder-${category.replace(/\s+/g, '-')}">
+        `;
+
+        prompts.forEach(prompt => {
+          const link = BookmarkletEngine.createBookmarkletLink(prompt);
+          html += `<div class="bookmark-item">${link.outerHTML}</div>`;
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    function toggleFolder(folderId) {
+      const folder = document.getElementById(folderId);
+      if (folder) {
+        folder.classList.toggle('expanded');
+      }
+    }
+  </script>
+
+  <script src="assets/js/mobile.js"></script>
+
+</body>
+</html>
