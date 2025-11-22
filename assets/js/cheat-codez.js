@@ -10,7 +10,7 @@ const CheatCodez = {
     pricePerGeneration: 1.99,
     maxInputLength: 3000,
     apiEndpoint: '/api/generate-prompt', // Will be replaced with actual OpenAI endpoint
-    gumroadLink: 'https://gumroad.com/l/YOUR_PRODUCT_LINK' // Replace with actual product link
+    gumroadLink: 'https://gumroad.com/l/cheatcodez' // Update with actual Gumroad product link
   },
 
   // State

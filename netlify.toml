@@ -1,0 +1,116 @@
+# PROMPT PLAYGROUNDZ - Netlify Configuration
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Directory to publish (static files)
+  publish = "."
+
+  # Functions directory for serverless functions
+  functions = "api"
+
+# Environment variables (set these in Netlify Dashboard for security)
+# - EMAIL_PROVIDER: 'sendgrid' or 'aws_ses'
+# - SENDGRID_API_KEY: Your SendGrid API key
+# - EMAIL_FROM: Verified sender email
+# - EMAIL_TO: Recipient email for alerts
+# - KOFI_VERIFICATION_TOKEN: Ko-fi webhook verification token
+# - OPENAI_API_KEY: For Cheat Codez AI features
+
+# Production context
+[context.production]
+  environment = { NODE_ENV = "production" }
+
+# Branch deploy context
+[context.branch-deploy]
+  environment = { NODE_ENV = "development" }
+
+# Deploy preview context (for pull requests)
+[context.deploy-preview]
+  environment = { NODE_ENV = "development" }
+
+# Headers for security and caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Don't cache HTML (always serve fresh)
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Redirects for clean URLs
+[[redirects]]
+  from = "/api/send-email"
+  to = "/.netlify/functions/send-email"
+  status = 200
+
+[[redirects]]
+  from = "/api/webhooks/kofi"
+  to = "/.netlify/functions/webhooks/kofi"
+  status = 200
+
+[[redirects]]
+  from = "/api/webhooks/gumroad"
+  to = "/.netlify/functions/webhooks/gumroad"
+  status = 200
+
+# SPA fallback (optional - enable if using client-side routing)
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200
+
+# Custom 404 page
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Function-specific settings
+[functions]
+  # Directory containing functions
+  directory = "api"
+
+  # Node.js version for functions
+  node_bundler = "esbuild"
+
+# Scheduled functions (cron jobs) - for daily reports
+# Uncomment when needed
+# [functions."daily-report"]
+#   schedule = "0 9 * * *"  # Run at 9 AM daily
