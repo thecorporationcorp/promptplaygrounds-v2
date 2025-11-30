@@ -1,4 +1,4 @@
-# Prompt Playgrounds - Deployment Guide
+# PROMPT PLAYGROUNDZs - Deployment Guide
 
 ## 🎯 Quick Start Checklist
 
@@ -30,7 +30,7 @@
 
 2. **Get API Key**
    - Settings → API Keys → Create API Key
-   - Name: "Prompt Playgrounds"
+   - Name: "PROMPT PLAYGROUNDZs"
    - Permissions: Full Access (or Mail Send only)
    - Copy the API key (save it securely!)
 
@@ -43,7 +43,7 @@
    ```bash
    SENDGRID_API_KEY=SG.xxxxxxxxxxxxx
    SENDGRID_FROM_EMAIL=hello@yourdomain.com
-   SENDGRID_FROM_NAME=Prompt Playgrounds
+   SENDGRID_FROM_NAME=PROMPT PLAYGROUNDZs
    ```
 
 5. **Update webhook-handler.js**
@@ -280,7 +280,7 @@ async sendEmail(emailData) {
    # SendGrid
    SENDGRID_API_KEY=SG.xxxxxxxxxxxxx
    SENDGRID_FROM_EMAIL=hello@yourdomain.com
-   SENDGRID_FROM_NAME=Prompt Playgrounds
+   SENDGRID_FROM_NAME=PROMPT PLAYGROUNDZs
 
    # Ko-fi
    KOFI_VERIFICATION_TOKEN=your_kofi_verification_token

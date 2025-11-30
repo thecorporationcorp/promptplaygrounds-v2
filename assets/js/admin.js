@@ -1,6 +1,6 @@
 /**
  * ADMIN CONTROL PANEL - MASTER BACKEND
- * Complete control system for Prompt Playgrounds creator
+ * Complete control system for PROMPT PLAYGROUNDZs creator
  *
  * ⚠️ CRITICAL SECURITY WARNING ⚠️
  * This is CLIENT-SIDE authentication only - suitable for MVP/demo.

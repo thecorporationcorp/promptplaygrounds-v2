@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>CHEAT CODEZ - AI Prompt Generator | PROMPT PLAYGROUNDZ</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#00ff00">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Transform your ideas into perfect AI prompts. AI-powered optimization. Get 1-3 FREE, then $1.99 each.">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <style>
+    /* CHEAT CODEZ HACKER THEME */
+    body {
+      background: #000000;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+    }
+
+    .cheat-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .cheat-header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 2px solid #00ff00;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cheat-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+      animation: glitch 3s infinite;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+
+    .cheat-subtitle {
+      color: #00cc00;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .access-granted {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 2px solid #00ff00;
+      margin-top: 1rem;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 49%, 100% { opacity: 1; }
+      50%, 99% { opacity: 0.3; }
+    }
+
+    .terminal-box {
+      background: #0a0a0a;
+      border: 2px solid #00ff00;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    }
+
+    .terminal-prompt {
+      color: #00ff00;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .cheat-input {
+      width: 100%;
+      background: #000000;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      padding: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      min-height: 150px;
+      resize: vertical;
+      box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
+    }
+
+    .cheat-input:focus {
+      outline: none;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+      border-color: #00ff00;
+    }
+
+    .cheat-btn {
+      background: #00ff00;
+      color: #000000;
+      border: none;
+      padding: 1rem 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 1.125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    }
+
+    .cheat-btn:hover {
+      background: #00cc00;
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
+      transform: translateY(-2px);
+    }
+
+    .cheat-btn:disabled {
+      background: #003300;
+      color: #006600;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .cheat-btn-outline {
+      background: transparent;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+    }
+
+    .cheat-btn-outline:hover {
+      background: #00ff00;
+      color: #000000;
+    }
+
+    .credits-display {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: #0a0a0a;
+      border: 2px solid #00ff00;
+      border-radius: 8px;
+    }
+
+    .credits-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #00ff00;
+      text-shadow: 0 0 20px #00ff00;
+    }
+
+    .credits-label {
+      color: #00cc00;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-top: 0.5rem;
+    }
+
+    .output-selector {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .output-option {
+      background: #0a0a0a;
+      border: 2px solid #003300;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .output-option:hover {
+      border-color: #00ff00;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    }
+
+    .output-option.active {
+      border-color: #00ff00;
+      background: #001100;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    }
+
+    .output-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-box {
+      background: #0a0a0a;
+      border: 2px solid #00ff00;
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .result-box.show {
+      display: block;
+      animation: slideIn 0.5s;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.05;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .alert-green {
+      background: #001100;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .alert-yellow {
+      background: #1a1a00;
+      border: 2px solid #ffff00;
+      color: #ffff00;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .nav-override {
+      background: #000000 !important;
+      border-bottom: 2px solid #00ff00;
+    }
+
+    .nav-override a {
+      color: #00ff00 !important;
+    }
+
+    .nav-override a:hover {
+      color: #00cc00 !important;
+      text-shadow: 0 0 10px #00ff00;
+    }
+
+    .bookmarklet-installer {
+      background: #0a0a0a;
+      border: 2px solid #ffff00;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+
+    .bookmarklet-button-cheat {
+      display: inline-block;
+      background: #ffff00;
+      color: #000000;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+      cursor: move;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #003300;
+      border-top-color: #00ff00;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Matrix background effect -->
+  <div class="matrix-bg" id="matrixBg"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar nav-override">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        ⚡ PROMPT PLAYGROUNDZ
+      </a>
+
+      <ul class="navbar-nav">
+        <li><a href="hub.html">Library</a></li>
+        <li><a href="cheat-codez.html" style="color: #00ff00 !important; font-weight: 700;">Cheat Codez</a></li>
+        <li><a href="project-filez.html">Project Filez</a></li>
+        <li><a href="developer.html">Developers</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="cheat-header">
+    <div class="cheat-container">
+      <h1 class="cheat-title">⚡ CHEAT CODEZ ⚡</h1>
+      <p class="cheat-subtitle">AI-Powered Prompt Generator</p>
+      <div class="access-granted">
+        &gt;&gt; ACCESS GRANTED &lt;&lt;
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="cheat-container">
+
+    <!-- CREDITS DISPLAY -->
+    <div class="credits-display">
+      <div class="credits-number" id="creditsCount">3</div>
+      <div class="credits-label">Free Cheat Codez Remaining</div>
+      <div style="margin-top: 1rem; font-size: 0.875rem; color: #00cc00;">
+        <span id="creditsMessage">Try it free! Then $1.99 per generation</span>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="terminal-box">
+      <div class="terminal-prompt">&gt; SYSTEM.INIT()</div>
+      <h2 style="color: #00ff00; margin-bottom: 1rem;">Unlock God-Tier Prompts</h2>
+      <p style="color: #00cc00; line-height: 1.8;">
+        Transform your rough ideas into perfectly optimized AI prompts. Our proprietary AI analyzes your request and generates professional, battle-tested prompts that get 10x better results.
+      </p>
+      <p style="color: #00cc00; line-height: 1.8; margin-top: 1rem;">
+        <strong style="color: #00ff00;">How it works:</strong> Enter what you want, choose your output style, and our AI generates the perfect prompt. Simple as that. No prompt engineering degree required.
+      </p>
+    </div>
+
+    <!-- CHAT CAPTURE BOOKMARKLET -->
+    <div class="bookmarklet-installer">
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+        <div style="font-size: 2rem;">📎</div>
+        <div>
+          <strong style="color: #ffff00;">BONUS: Chat Capture Tool</strong>
+          <div style="font-size: 0.875rem; color: #cccc00; margin-top: 0.25rem;">
+            Drag entire ChatGPT/Claude conversations into Cheat Codez for optimization
+          </div>
+        </div>
+      </div>
+      <a
+        id="cheatCodezBookmarklet"
+        href="javascript:(function(){let%20msgs=[];const%20h=window.location.hostname;if(h.includes('openai')||h.includes('chatgpt')){msgs=Array.from(document.querySelectorAll('[data-message-author-role]')).map(e=>e.innerText?.trim()).filter(t=>t&&t.length>15);}else%20if(h.includes('claude.ai')){msgs=Array.from(document.querySelectorAll('.font-claude-message')).map(e=>e.innerText?.trim()).filter(t=>t&&t.length>15);if(msgs.length===0)msgs=Array.from(document.querySelectorAll('div[class*=\"contents\"]')).map(e=>e.innerText?.trim()).filter(t=>t&&t.length>15).filter((v,i,a)=>a.indexOf(v)===i);}else{msgs=Array.from(document.querySelectorAll('[data-message-author-role],.message-content,.markdown,p')).map(e=>e.innerText?.trim()).filter(t=>t&&t.length>15);}if(msgs.length===0){alert('❌%20No%20conversation%20found!\\n\\nPlatform:%20'+h+'\\n\\nMake%20sure%20you\\'re%20on:\\n•%20ChatGPT\\n•%20Claude\\n•%20Gemini/Copilot/Grok\\n\\nIf%20you%20ARE%20on%20one%20of%20these,%20please%20report%20this%20bug!');return;}const%20c=msgs.join('\\n\\n');const%20p=c.slice(0,3000);const%20f='📎%20CHAT%20CAPTURED%20BY%20PROMPT%20PLAYGROUNDZ\\n'+'═'.repeat(50)+'\\n\\n'+p+(c.length>3000?'\\n\\n[...'+Math.round((c.length-3000)/1000)+'k%20more%20chars]':'')+'\\n\\n'+'═'.repeat(50)+'\\n\\n✨%20NEXT%20STEP:\\n1.%20Go%20to%20promptplaygroundz.com/cheat-codez.html\\n2.%20Paste%20this%20into%20the%20text%20box\\n3.%20Choose%20output%20style\\n4.%20Generate%20your%20Cheat%20Code!\\n\\n💡%20TIP:%20Turns%20messy%20chats%20into%20clean,%20reusable%20prompts.\\n\\n—%20Captured%20by%20promptplaygroundz';navigator.clipboard.writeText(f).then(()=>{alert('✅%20CHAT%20CAPTURED!\\n\\n'+msgs.length+'%20messages%20('+Math.round(c.length/1000)+'k%20chars)\\n\\nCopied%20to%20clipboard!\\n\\nNow%20go%20to%20Cheat%20Codez%20and%20paste.');}).catch(e=>{prompt('Copy%20this%20(Ctrl+C):',f);});})()"
+        class="bookmarklet-button-cheat"
+        draggable="true"
+        title="Drag to bookmarks bar, then click on ChatGPT/Claude to capture conversations"
+      >
+        📎 Capture Chat → Cheat Codez
+      </a>
+      <div style="margin-top: 1rem; font-size: 0.875rem; color: #cccc00;">
+        💡 <strong>Pro tip:</strong> Drag this to your bookmarks bar. Use it on ChatGPT/Claude to instantly capture conversations for optimization.
+      </div>
+    </div>
+
+    <!-- INPUT SECTION -->
+    <div class="terminal-box">
+      <div class="terminal-prompt">&gt; ENTER_YOUR_MISSION()</div>
+      <label for="userInput" style="display: block; margin-bottom: 0.5rem; color: #00ff00; font-weight: 700;">
+        What do you need?
+      </label>
+      <textarea
+        id="userInput"
+        class="cheat-input"
+        placeholder="Enter your request here...
+
+Examples:
+• 'Help me write professional emails'
+• 'Analyze data and find insights'
+• 'Create engaging social media content'
+• Or paste an entire ChatGPT conversation for optimization
+
+Be specific! The more detail you provide, the better your Cheat Code."
+      ></textarea>
+      <div style="margin-top: 0.5rem; font-size: 0.875rem; color: #00cc00;">
+        <span id="charCount">0</span> / 3000 characters
+      </div>
+    </div>
+
+    <!-- OUTPUT STYLE SELECTOR -->
+    <div class="terminal-box">
+      <div class="terminal-prompt">&gt; SELECT_OUTPUT_MODE()</div>
+      <label style="display: block; margin-bottom: 1rem; color: #00ff00; font-weight: 700;">
+        Choose Your Cheat Code Style:
+      </label>
+      <div class="output-selector">
+        <div class="output-option active" data-style="optimized" onclick="CheatCodez.selectOutputStyle('optimized')">
+          <div class="output-icon">✨</div>
+          <div style="color: #00ff00; font-weight: 700; margin-bottom: 0.5rem;">OPTIMIZED</div>
+          <div style="color: #00cc00; font-size: 0.875rem;">Clean, structured, ready to use</div>
+        </div>
+        <div class="output-option" data-style="template" onclick="CheatCodez.selectOutputStyle('template')">
+          <div class="output-icon">📋</div>
+          <div style="color: #00ff00; font-weight: 700; margin-bottom: 0.5rem;">TEMPLATE</div>
+          <div style="color: #00cc00; font-size: 0.875rem;">With variables you can customize</div>
+        </div>
+        <div class="output-option" data-style="workflow" onclick="CheatCodez.selectOutputStyle('workflow')">
+          <div class="output-icon">🎯</div>
+          <div style="color: #00ff00; font-weight: 700; margin-bottom: 0.5rem;">WORKFLOW</div>
+          <div style="color: #00cc00; font-size: 0.875rem;">Multi-step process breakdown</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GENERATE BUTTON -->
+    <div style="text-align: center; margin: 2rem 0;">
+      <button
+        id="generateBtn"
+        class="cheat-btn"
+        onclick="CheatCodez.generateCheatCode()"
+      >
+        <span id="btnText">⚡ GENERATE CHEAT CODE ⚡</span>
+        <span id="btnLoading" style="display: none;"><span class="loading-spinner"></span> Generating...</span>
+      </button>
+      <div id="paymentPrompt" style="display: none; margin-top: 1.5rem;">
+        <div class="alert-yellow">
+          <strong>⚠️ FREE CREDITS USED</strong><br/>
+          You've used your 3 free Cheat Codez. Get more for just $1.99 each!
+        </div>
+        <a href="https://gumroad.com/l/cheatcodez" target="_blank" class="cheat-btn" style="display: inline-block; text-decoration: none; margin-top: 1rem;">
+          💳 Buy More Cheat Codez - $1.99
+        </a>
+        <div style="margin-top: 1rem; font-size: 0.875rem; color: #00cc00;">
+          Or get 10 for $14.99 (save 25%)
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT DISPLAY -->
+    <div id="resultBox" class="result-box">
+      <div class="terminal-prompt">&gt; CHEAT_CODE.GENERATED()</div>
+      <h3 style="color: #00ff00; margin-bottom: 1rem;">🎉 Your Cheat Code is Ready!</h3>
+
+      <div style="background: #000000; border: 2px solid #00ff00; padding: 1.5rem; margin: 1rem 0; border-radius: 4px; position: relative;">
+        <div id="generatedPrompt" style="color: #00ff00; white-space: pre-wrap; font-family: 'Courier New', monospace; line-height: 1.6;"></div>
+        <button
+          onclick="CheatCodez.copyToClipboard()"
+          class="cheat-btn-outline"
+          style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; font-size: 0.875rem;"
+        >
+          📋 COPY
+        </button>
+      </div>
+
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <button onclick="CheatCodez.saveAsBookmarklet()" class="cheat-btn-outline">
+          📌 Save as Bookmarklet
+        </button>
+        <button onclick="CheatCodez.shareCheatCode()" class="cheat-btn-outline">
+          🔗 Share
+        </button>
+        <button onclick="CheatCodez.generateAnother()" class="cheat-btn">
+          ⚡ Generate Another
+        </button>
+      </div>
+
+      <div class="alert-green" style="margin-top: 2rem;">
+        <strong>💡 How to use:</strong>
+        <ol style="margin: 0.5rem 0 0 1.5rem; line-height: 1.8;">
+          <li>Copy the prompt above</li>
+          <li>Paste into ChatGPT, Claude, or any AI</li>
+          <li>Watch the magic happen 🚀</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- EXAMPLES -->
+    <div class="terminal-box" style="margin-top: 3rem;">
+      <div class="terminal-prompt">&gt; USAGE_EXAMPLES()</div>
+      <h3 style="color: #00ff00; margin-bottom: 1.5rem;">See What Others Have Generated</h3>
+
+      <div style="display: grid; gap: 1.5rem;">
+        <div style="border-left: 4px solid #00ff00; padding-left: 1rem;">
+          <div style="color: #00ff00; font-weight: 700; margin-bottom: 0.5rem;">
+            "I need help writing cold emails that actually get replies"
+          </div>
+          <div style="color: #00cc00; font-size: 0.875rem;">
+            → Generated a professional email framework with psychology-based hooks and follow-up sequences
+          </div>
+        </div>
+
+        <div style="border-left: 4px solid #00ff00; padding-left: 1rem;">
+          <div style="color: #00ff00; font-weight: 700; margin-bottom: 0.5rem;">
+            "Analyze customer feedback and find patterns"
+          </div>
+          <div style="color: #00cc00; font-size: 0.875rem;">
+            → Created a step-by-step workflow for sentiment analysis, theme extraction, and actionable insights
+          </div>
+        </div>
+
+        <div style="border-left: 4px solid #00ff00; padding-left: 1rem;">
+          <div style="color: #00ff00; font-weight: 700; margin-bottom: 0.5rem;">
+            "Turn my blog posts into viral Twitter threads"
+          </div>
+          <div style="color: #00cc00; font-size: 0.875rem;">
+            → Built a template with hook formulas, engagement patterns, and CTA strategies
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="terminal-box" style="margin-top: 2rem;">
+      <div class="terminal-prompt">&gt; FAQ.LOAD()</div>
+      <h3 style="color: #00ff00; margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
+
+      <details style="margin-bottom: 1rem;">
+        <summary style="color: #00ff00; cursor: pointer; font-weight: 700; padding: 0.5rem 0;">
+          How is this different from just asking ChatGPT?
+        </summary>
+        <div style="color: #00cc00; margin-top: 0.5rem; padding-left: 1rem; line-height: 1.8;">
+          Our AI is specifically trained on prompt engineering best practices. It knows exactly how to structure prompts for maximum effectiveness. Think of it as having a prompt engineering expert optimize your requests.
+        </div>
+      </details>
+
+      <details style="margin-bottom: 1rem;">
+        <summary style="color: #00ff00; cursor: pointer; font-weight: 700; padding: 0.5rem 0;">
+          Why do I need to pay after 3 free generations?
+        </summary>
+        <div style="color: #00cc00; margin-top: 0.5rem; padding-left: 1rem; line-height: 1.8;">
+          Each generation costs us ~$0.15 in AI API fees. At $1.99, you're getting professional prompt engineering for less than a coffee. The 3 free ones let you test it risk-free.
+        </div>
+      </details>
+
+      <details style="margin-bottom: 1rem;">
+        <summary style="color: #00ff00; cursor: pointer; font-weight: 700; padding: 0.5rem 0;">
+          Can I use the generated prompts commercially?
+        </summary>
+        <div style="color: #00cc00; margin-top: 0.5rem; padding-left: 1rem; line-height: 1.8;">
+          Yes! Once generated, the prompts are yours. Use them however you want - personal, commercial, resell them, whatever. You own them.
+        </div>
+      </details>
+
+      <details style="margin-bottom: 1rem;">
+        <summary style="color: #00ff00; cursor: pointer; font-weight: 700; padding: 0.5rem 0;">
+          What's the Chat Capture bookmarklet?
+        </summary>
+        <div style="color: #00cc00; margin-top: 0.5rem; padding-left: 1rem; line-height: 1.8;">
+          It's a tool that lets you grab entire ChatGPT or Claude conversations and optimize them. Perfect if you have a working prompt but want to make it even better. Just click the bookmarklet on your chat, and it auto-fills Cheat Codez.
+        </div>
+      </details>
+    </div>
+
+  </div>
+
+  <!-- FOOTER (minimalist for cheat codez theme) -->
+  <footer style="background: #000000; border-top: 2px solid #00ff00; padding: 2rem 0; margin-top: 4rem; text-align: center; color: #00cc00;">
+    <div class="cheat-container">
+      <p>&gt; PROMPT PLAYGROUNDZ - CHEAT CODEZ DIVISION &lt;</p>
+      <p style="font-size: 0.875rem; margin-top: 1rem;">
+        <a href="index.html" style="color: #00ff00; text-decoration: none;">Home</a> |
+        <a href="hub.html" style="color: #00ff00; text-decoration: none;">Library</a> |
+        <a href="project-filez.html" style="color: #00ff00; text-decoration: none;">Project Filez</a> |
+        <a href="developer.html" style="color: #00ff00; text-decoration: none;">Developers</a>
+      </p>
+      <p style="font-size: 0.75rem; margin-top: 1rem; opacity: 0.6;">
+        &copy; 2024 PROMPT PLAYGROUNDZ. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/security.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/email-integration.js"></script>
+  <!-- <script src="assets/js/system-monitor.js"></script> Disabled - causes performance issues -->
+  <script src="assets/js/accessibility.js"></script>
+  <script src="assets/js/sw-register.js"></script>
+  <script src="assets/js/cheat-codez.js"></script>
+
+  <script>
+    // Character counter
+    document.getElementById('userInput').addEventListener('input', function() {
+      const count = this.value.length;
+      document.getElementById('charCount').textContent = count;
+
+      if (count > 3000) {
+        this.value = this.value.slice(0, 3000);
+        document.getElementById('charCount').textContent = '3000';
+      }
+    });
+
+    // Auto-fill from chat capture
+    const urlParams = new URLSearchParams(window.location.search);
+    const capturedText = urlParams.get('capture');
+    if (capturedText) {
+      document.getElementById('userInput').value = decodeURIComponent(capturedText);
+      document.getElementById('charCount').textContent = document.getElementById('userInput').value.length;
+
+      // Show success message
+      const alert = document.createElement('div');
+      alert.className = 'alert-green';
+      alert.innerHTML = '<strong>✓ Chat captured successfully!</strong> Your conversation has been loaded. Now choose an output style and generate your Cheat Code!';
+      alert.style.margin = '1rem 0';
+      document.querySelector('.cheat-container').insertBefore(alert, document.querySelector('.credits-display'));
+
+      // Scroll to input
+      setTimeout(() => {
+        document.getElementById('userInput').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 500);
+    }
+
+    // Update bookmarklet with correct domain
+    window.addEventListener('DOMContentLoaded', function() {
+      const bookmarklet = document.getElementById('cheatCodezBookmarklet');
+      if (bookmarklet) {
+        // Get current domain for instructions
+        const currentDomain = window.location.origin.replace('http://', '').replace('https://', '');
+
+        // Clipboard-based bookmarklet with platform detection
+        const bookmarkletCode = `javascript:(function(){let%20msgs=[];const%20h=window.location.hostname;if(h.includes('openai')||h.includes('chatgpt')){msgs=Array.from(document.querySelectorAll('[data-message-author-role]')).map(e=>e.innerText?.trim()).filter(t=>t&&t.length>15);}else%20if(h.includes('claude.ai')){msgs=Array.from(document.querySelectorAll('.font-claude-message')).map(e=>e.innerText?.trim()).filter(t=>t&&t.length>15);if(msgs.length===0)msgs=Array.from(document.querySelectorAll('div[class*=\"contents\"]')).map(e=>e.innerText?.trim()).filter(t=>t&&t.length>15).filter((v,i,a)=>a.indexOf(v)===i);}else{msgs=Array.from(document.querySelectorAll('[data-message-author-role],.message-content,.markdown,p')).map(e=>e.innerText?.trim()).filter(t=>t&&t.length>15);}if(msgs.length===0){alert('❌%20No%20conversation%20found!\\n\\nPlatform:%20'+h+'\\n\\nMake%20sure%20you\\'re%20on:\\n•%20ChatGPT\\n•%20Claude\\n•%20Gemini/Copilot/Grok\\n\\nIf%20you%20ARE%20on%20one%20of%20these,%20please%20report%20this%20bug!');return;}const%20c=msgs.join('\\n\\n');const%20p=c.slice(0,3000);const%20f='📎%20CHAT%20CAPTURED%20BY%20PROMPT%20PLAYGROUNDZ\\n'+'═'.repeat(50)+'\\n\\n'+p+(c.length>3000?'\\n\\n[...'+Math.round((c.length-3000)/1000)+'k%20more%20chars]':'')+'\\n\\n'+'═'.repeat(50)+'\\n\\n✨%20NEXT%20STEP:\\n1.%20Go%20to%20${currentDomain}/cheat-codez.html\\n2.%20Paste%20this%20into%20the%20text%20box\\n3.%20Choose%20output%20style\\n4.%20Generate%20your%20Cheat%20Code!\\n\\n💡%20TIP:%20Turns%20messy%20chats%20into%20clean,%20reusable%20prompts.\\n\\n—%20Captured%20by%20promptplaygroundz';navigator.clipboard.writeText(f).then(()=>{alert('✅%20CHAT%20CAPTURED!\\n\\n'+msgs.length+'%20messages%20('+Math.round(c.length/1000)+'k%20chars)\\n\\nCopied%20to%20clipboard!\\n\\nNow%20go%20to%20Cheat%20Codez%20and%20paste.');}).catch(e=>{prompt('Copy%20this%20(Ctrl+C):',f);});})()`;
+
+        bookmarklet.href = bookmarkletCode;
+
+        // Add click handler for when user clicks it ON the Cheat Codez page
+        bookmarklet.addEventListener('click', function(e) {
+          // If we're on the Cheat Codez page, show instructions instead of executing
+          if (window.location.pathname.includes('cheat-codez')) {
+            e.preventDefault();
+
+            // Check if instructions are already showing
+            if (document.getElementById('bookmarklet-instructions')) {
+              return;
+            }
+
+            // Create instruction modal
+            const modal = document.createElement('div');
+            modal.id = 'bookmarklet-instructions';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;';
+
+            modal.innerHTML = `
+              <div style="background: #1a1a1a; border: 2px solid #00ff41; border-radius: 8px; padding: 2rem; max-width: 600px; color: white;">
+                <h2 style="color: #00ff41; margin-bottom: 1rem;">📎 How to Use the Chat Capture Bookmarklet</h2>
+
+                <div style="background: #000; border: 1px solid #00ff41; padding: 1.5rem; margin: 1rem 0; border-radius: 4px;">
+                  <h3 style="color: #ffff00; margin-bottom: 1rem;">Step 1: Install the Bookmarklet</h3>
+                  <p style="color: #00ff41; line-height: 1.6;">
+                    <strong>Option A:</strong> Drag the yellow button to your bookmarks bar<br>
+                    <strong>Option B:</strong> Right-click → "Bookmark this link" → Save to bookmarks bar
+                  </p>
+                </div>
+
+                <div style="background: #000; border: 1px solid #00ff41; padding: 1.5rem; margin: 1rem 0; border-radius: 4px;">
+                  <h3 style="color: #ffff00; margin-bottom: 1rem;">Step 2: Have a Conversation</h3>
+                  <p style="color: #00ff41; line-height: 1.6;">
+                    Go to one of these sites and have a conversation:<br>
+                    • <strong>ChatGPT:</strong> chat.openai.com<br>
+                    • <strong>Claude:</strong> claude.ai<br>
+                    • <strong>Gemini:</strong> gemini.google.com
+                  </p>
+                </div>
+
+                <div style="background: #000; border: 1px solid #00ff41; padding: 1.5rem; margin: 1rem 0; border-radius: 4px;">
+                  <h3 style="color: #ffff00; margin-bottom: 1rem;">Step 3: Capture It!</h3>
+                  <p style="color: #00ff41; line-height: 1.6;">
+                    Click the bookmark in your bookmarks bar.<br>
+                    <strong>✅ Copies to clipboard automatically!</strong><br>
+                    <span style="font-size: 0.9em; opacity: 0.8;">Includes branding: "Captured by promptplaygroundz"</span>
+                  </p>
+                </div>
+
+                <div style="background: #000; border: 1px solid #00ff41; padding: 1.5rem; margin: 1rem 0; border-radius: 4px;">
+                  <h3 style="color: #ffff00; margin-bottom: 1rem;">Step 4: Paste & Optimize</h3>
+                  <p style="color: #00ff41; line-height: 1.6;">
+                    Come back to Cheat Codez and <strong>paste</strong> (Ctrl+V) into the text box.<br>
+                    Choose your output style and generate your Cheat Code! 🚀
+                  </p>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 255, 0, 0.1); border: 1px solid #ffff00; border-radius: 4px;">
+                  <strong style="color: #ffff00;">💡 Pro Tip:</strong>
+                  <span style="color: #00ff41;">The bookmarklet captures entire conversations and formats them with instructions. If clipboard fails, it shows a prompt to manually copy. Works on ChatGPT, Claude, and Gemini!</span>
+                </div>
+
+                <button onclick="this.parentElement.parentElement.remove()" style="width: 100%; margin-top: 1.5rem; padding: 1rem; background: #00ff41; color: #000; border: none; border-radius: 4px; font-weight: bold; font-size: 1rem; cursor: pointer;">
+                  ✅ Got It!
+                </button>
+              </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Close on background click
+            modal.addEventListener('click', function(e) {
+              if (e.target === modal) {
+                modal.remove();
+              }
+            });
+          }
+          // Otherwise, let it execute normally (we're on ChatGPT/Claude)
+        });
+      }
+    });
+
+    // Simple matrix rain effect (lightweight)
+    function createMatrixRain() {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      document.getElementById('matrixBg').appendChild(canvas);
+
+      const chars = '01アイウエオカキクケコサシスセソタチツテト';
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+
+      function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#00ff00';
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+
+      setInterval(draw, 50);
+    }
+
+    createMatrixRain();
+  </script>
+
+</body>
+</html>

@@ -36,7 +36,7 @@
 
 #### Ko-fi (99¢ Library Access)
 - [ ] Create Ko-fi account: https://ko-fi.com
-- [ ] Set up product: "Prompt Playground Access - 99¢"
+- [ ] Set up product: "PROMPT PLAYGROUNDZ Access - 99¢"
 - [ ] Copy your Ko-fi link
 - [ ] Replace in `index.html` line ~200:
   ```html

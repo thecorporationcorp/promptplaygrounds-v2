@@ -3,7 +3,7 @@
  * Enables PWA functionality and offline access
  */
 
-const CACHE_NAME = 'prompt-playgrounds-v1';
+const CACHE_NAME = 'promptplaygroundz-v1.1.0';
 const OFFLINE_URL = '/index.html';
 
 // Assets to cache immediately on install
@@ -11,11 +11,17 @@ const PRECACHE_ASSETS = [
   '/',
   '/index.html',
   '/hub.html',
+  '/cheat-codez.html',
+  '/how-it-works.html',
   '/assets/css/style.css',
-  '/assets/js/mobile.js',
+  '/assets/js/security.js',
   '/assets/js/auth.js',
-  '/assets/js/bookmarklets.js',
-  '/assets/js/app.js'
+  '/assets/js/email-integration.js',
+  '/assets/js/system-monitor.js',
+  '/assets/js/accessibility.js',
+  '/assets/js/cheat-codez.js',
+  '/assets/js/mobile.js',
+  '/assets/js/bookmarklets.js'
 ];
 
 // Install event - cache essential assets

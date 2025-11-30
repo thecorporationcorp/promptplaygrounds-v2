@@ -7,7 +7,7 @@
 
 ## 🎯 OVERVIEW
 
-This is a **production-grade automation system** that makes Prompt Playgrounds run on autopilot. When someone buys, they get their access code automatically. When a bookmarklet fails, it recovers automatically. When users need help, they get it automatically.
+This is a **production-grade automation system** that makes PROMPT PLAYGROUNDZs run on autopilot. When someone buys, they get their access code automatically. When a bookmarklet fails, it recovers automatically. When users need help, they get it automatically.
 
 ### What's Automated:
 
@@ -307,7 +307,7 @@ async sendEmail(to, subject, html) {
 ```javascript
 async sendEmail(to, subject, html) {
   const formData = new FormData();
-  formData.append('from', 'Prompt Playgrounds <hello@promptplaygrounds.com>');
+  formData.append('from', 'PROMPT PLAYGROUNDZs <hello@promptplaygrounds.com>');
   formData.append('to', to);
   formData.append('subject', subject);
   formData.append('html', html);
@@ -356,7 +356,7 @@ async sendEmail(to, subject, html) {
 ### First-Time User Journey
 
 **Minute 0: Discovery**
-- Finds Prompt Playgrounds on social media
+- Finds PROMPT PLAYGROUNDZs on social media
 - Clicks link to index.html
 
 **Minute 1: Interest**
@@ -643,7 +643,7 @@ A: Use one-click import method. Takes only 2 minutes vs 10-15 for manual.
 
 ## 🎓 SUMMARY
 
-**Prompt Playgrounds Automation = Zero Friction**
+**PROMPT PLAYGROUNDZs Automation = Zero Friction**
 
 - Purchases process automatically
 - Emails send automatically

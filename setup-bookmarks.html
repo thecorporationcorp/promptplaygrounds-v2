@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <title>Setup Your Bookmarklets - Prompt Playgrounds</title>
+  <title>Setup Your Bookmarklets - PROMPT PLAYGROUNDZs</title>
 
   <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#6366F1">
@@ -237,11 +237,13 @@
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="navbar-brand">
-        📌 Prompt Playgrounds
+        📌 PROMPT PLAYGROUNDZs
       </a>
       <ul class="navbar-nav">
         <li><a href="hub.html">Library</a></li>
-        <li><a href="setup-bookmarks.html">Setup Guide</a></li>
+        <li><a href="cheat-codez.html">Cheat Codez</a></li>
+        <li><a href="project-filez.html">Project Filez</a></li>
+        <li><a href="developer.html">Developers</a></li>
         <li><a href="how-it-works.html">How It Works</a></li>
       </ul>
     </div>
@@ -338,7 +340,7 @@
 
         <div class="alert alert-success mt-lg">
           <strong>✓ That's it!</strong> Your bookmarks bar will now have a folder called
-          "AI Prompts - Prompt Playgrounds" with all your prompts organized by category.
+          "AI Prompts - PROMPT PLAYGROUNDZs" with all your prompts organized by category.
         </div>
       </div>
     </div>
@@ -387,7 +389,12 @@
   </div>
 
   <!-- Scripts -->
+  <script src="assets/js/security.js"></script>
   <script src="assets/js/auth.js"></script>
+  <script src="assets/js/email-integration.js"></script>
+  <!-- <script src="assets/js/system-monitor.js"></script> Disabled - causes performance issues -->
+  <script src="assets/js/accessibility.js"></script>
+  <script src="assets/js/sw-register.js"></script>
   <script src="assets/js/bookmarklets.js"></script>
   <script src="assets/js/bookmark-setup.js"></script>
   <script src="assets/js/app.js"></script>
@@ -434,7 +441,7 @@
 
       // Generate bookmark file
       const bookmarkHTML = BookmarkSetup.generateBookmarkFile(userPrompts, {
-        folderName: 'AI Prompts - Prompt Playgrounds',
+        folderName: 'AI Prompts - PROMPT PLAYGROUNDZs',
         organizeByCategory: true,
         addTimestamps: true
       });

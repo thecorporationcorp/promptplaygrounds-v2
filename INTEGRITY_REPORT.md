@@ -118,13 +118,13 @@ grep -r "alt=" hub.html admin.html *.html
    ```html
    <!-- Current - Unusable for blind users -->
    <nav class="navbar">
-     <a href="index.html">📌 Prompt Playgrounds</a>
+     <a href="index.html">📌 PROMPT PLAYGROUNDZs</a>
    </nav>
 
    <!-- Should be: -->
    <nav class="navbar" role="navigation" aria-label="Main navigation">
-     <a href="index.html" aria-label="Prompt Playgrounds home">
-       <span aria-hidden="true">📌</span> Prompt Playgrounds
+     <a href="index.html" aria-label="PROMPT PLAYGROUNDZs home">
+       <span aria-hidden="true">📌</span> PROMPT PLAYGROUNDZs
      </a>
    </nav>
    ```
